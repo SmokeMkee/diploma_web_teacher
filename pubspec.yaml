@@ -1,0 +1,65 @@
+name: diploma_web_teacher
+description: A new Flutter project.
+
+
+publish_to: 'none'
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=2.18.4 <3.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  provider: ^6.0.5
+  intl: ^0.17.0
+  dio: ^4.0.6
+  table_calendar: ^3.0.8
+  bloc_concurrency: ^0.2.1
+  flutter_bloc: ^8.1.1
+  side_navigation: ^1.0.4
+  auto_route: ^5.0.3
+  multiselect: ^0.1.0
+  equatable: ^2.0.5
+  flutter_secure_storage: ^8.0.0
+  syncfusion_flutter_datagrid: ^20.4.43
+  flutter_localizations:
+    sdk: flutter
+  flutter_svg: ^1.1.6
+
+  bloc_event_transformers: ^1.0.1
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  auto_route_generator: ^5.0.3
+  build_runner: ^2.3.3
+  flutter_gen: ^5.1.0+1
+  flutter_lints: ^2.0.1
+
+flutter:
+
+
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/images/
+    - assets/svg/
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/poppins/Poppins-Bold.ttf
+        - asset: assets/fonts/poppins/Poppins-Medium.ttf
+        - asset: assets/fonts/poppins/Poppins-Regular.ttf
+        - asset: assets/fonts/poppins/Poppins-SemiBold.ttf
+        - asset: assets/fonts/poppins/Poppins-SemiBoldItalic.ttf
+          style: italic
+flutter_intl:
+  enabled: true
+  main_locale: "ru"
+  arb-dir: lib/src/features/localization/
+  output_dir: lib/src/features/localization/generated

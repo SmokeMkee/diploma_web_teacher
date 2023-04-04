@@ -1,0 +1,26 @@
+{
+  "logIn": "Авторизоваться",
+  "emailAddress": "Адрес электронной почты",
+  "password": "Пароль",
+  "forgotPassword": "Вы забыли свой пароль",
+  "resetPassword": "Сброс пароля",
+  "logInAcc": "Войти в аккаунт",
+  "rememberPassword": "Помните свой пароль",
+  "passwordRecovery": "Восстановление пароля",
+  "enterEmailForAccount": "Введите адрес электронной почты, который вы используете для своей учетной записи",
+  "next": "Следующий",
+  "verificationCode": "Проверочный код",
+  "verificationCodeByEmail": "Мы отправили вам код подтверждения по электронной почте",
+  "sendAgain": "Отправь снова",
+  "enterNewPassword": "Введите новый пароль",
+  "changePassword": "Изменить пароль",
+  "assignments": "Задания",
+  "gradeBook": "Журнал оценок",
+  "schedule": "Расписание",
+  "saved": "Сохранено",
+  "settings": "Настройки",
+  "courses": "Курсы",
+  "logOut" : "Выйти",
+  "groups" : "Группы"
+
+}
