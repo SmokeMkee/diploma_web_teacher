@@ -1,15 +1,19 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../constants/app_colors.dart';
 import '../../../../../../constants/app_styles.dart';
 import '../../../../widgets/course_container.dart';
+import '../../../theme_manager/theme_manager.dart';
 
 class GradeBookCard extends StatelessWidget {
   const GradeBookCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Padding(
       padding: const EdgeInsets.all(6),
       child: Card(
@@ -17,6 +21,8 @@ class GradeBookCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
+        shadowColor: Colors.white,
+        color: theme.colors.background,
         margin: const EdgeInsets.symmetric(vertical: 6),
         child: Padding(
           padding: const EdgeInsets.all(25.0),
@@ -26,20 +32,21 @@ class GradeBookCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  //const CourseContainer(),
+
+                   CourseContainer(text: 'IT',),
                   const SizedBox(width: 18),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
+                       Text(
                         'General English',
-                        style: AppStyles.s15w500,
+                        style: theme.textStyles.s15w500,
                       ),
                       Text(
                         'Teacher: Alan Alexander',
-                        style: AppStyles.s14w400.copyWith(
-                          color: AppColors.gray600,
+                        style: theme.textStyles.s14w400.copyWith(
+                          color: theme.colors.gray600,
                         ),
                       ),
                     ],

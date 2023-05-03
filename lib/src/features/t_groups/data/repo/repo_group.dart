@@ -10,16 +10,15 @@ class RepoGroup {
 
   Future<List<GroupDTO>> fetch() async {
     final result = await api.dio.get(
-      '/teacher/get-teacher-groups',
+      'teacher-group/get-teacher-groups',
     );
     List<GroupDTO> listCourse = groupListFromJson(json.encode(result.data));
     return listCourse;
   }
 
   Future<void> createGroup(String name) async {
-    print('a');
-    final result = await api.dio.post(
-      '/teacher/create-teacher-group',
+     await api.dio.post(
+      '/teacher-group/create-teacher-group',
       queryParameters: {
         "groupName" : name,
       }

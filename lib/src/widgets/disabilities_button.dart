@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../constants/app_assets.dart';
 import '../../../constants/app_colors.dart';
 import '../../../constants/app_styles.dart';
+import '../features/theme_manager/theme_manager.dart';
 
 
 class DisabilitiesButton extends StatelessWidget {
@@ -11,9 +13,11 @@ class DisabilitiesButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.gray200.withOpacity(0.2),
+        color: theme.colors.gray200.withOpacity(0.2),
         borderRadius: BorderRadius.circular(8),
       ),
       padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 15),
@@ -21,12 +25,12 @@ class DisabilitiesButton extends StatelessWidget {
         children: [
           SvgPicture.asset(
             AppAssets.svg.accessibility,
-            color: AppColors.primary,
+            color: theme.colors.primary,
           ),
           const SizedBox(width: 16),
-          const Text(
+           Text(
             'Version for people with disabilities',
-            style: AppStyles.s14w500,
+            style: theme.textStyles.s14w500,
           )
         ],
       ),

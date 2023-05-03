@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../constants/app_assets.dart';
 import '../../../constants/app_colors.dart';
 import '../../../constants/app_styles.dart';
+import '../features/theme_manager/theme_manager.dart';
 
 
 
@@ -20,23 +22,25 @@ class _AppDropDownButtonState extends State<AppDropDownButton> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: AppColors.gray200, width: 2),
+        border: Border.all(color: theme.colors.gray200, width: 2),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton(
           icon: SvgPicture.asset(
             AppAssets.svg.arrowDown,
-            color: AppColors.gray400,
+            color: theme.colors.gray400,
           ),
           isExpanded: true,
           hint: Text(
             widget.initial,
-            style: AppStyles.s15w400.copyWith(
-              color: AppColors.gray400,
+            style: theme.textStyles.s15w400.copyWith(
+              color: theme.colors.gray400,
             ),
           ),
           value: categoryValue,

@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
 import '../../../widgets/course_container.dart';
 import '../../../widgets/header_widget.dart';
+import '../../theme_manager/theme_manager.dart';
 
 class TSchedule extends StatelessWidget {
   const TSchedule({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: DefaultTabController(
@@ -21,17 +26,17 @@ class TSchedule extends StatelessWidget {
               title: 'schedule',
             ),
           ),
-          backgroundColor: Colors.transparent,
+          backgroundColor: theme.colors.background,
           body: Column(
             children: [
               const SizedBox(height: 50),
               TabBar(
-                unselectedLabelColor: AppColors.gray600,
+                unselectedLabelColor: theme.colors.gray600,
                 indicatorWeight: 6,
                 indicatorSize: TabBarIndicatorSize.label,
-                indicatorColor: AppColors.accent,
-                labelColor: AppColors.accent,
-                labelStyle: AppStyles.s15w500.copyWith(color: AppColors.accent),
+                indicatorColor: theme.colors.accent,
+                labelColor: theme.colors.accent,
+                labelStyle: theme.textStyles.s15w500.copyWith(color: theme.colors.accent),
                 tabs: const [
                   Tab(
                     text: 'Monday',
@@ -120,6 +125,8 @@ class ScheduleCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Padding(
       padding: const EdgeInsets.all(6),
       child: Card(
@@ -127,6 +134,8 @@ class ScheduleCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
+        color: theme.colors.background,
+        shadowColor: Colors.white,
         margin: const EdgeInsets.symmetric(vertical: 6),
         child: ClipPath(
           clipper: ShapeBorderClipper(
@@ -146,7 +155,7 @@ class ScheduleCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      //const CourseContainer(),
+                       CourseContainer(text: 'IT',),
                       const SizedBox(width: 18),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -155,28 +164,28 @@ class ScheduleCard extends StatelessWidget {
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
+                               Text(
                                 'General English',
-                                style: AppStyles.s15w500,
+                                style: theme.textStyles.s15w500,
                               ),
                               const SizedBox(width: 10),
                               Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
-                                  color: AppColors.subtitleBg,
+                                  color: theme.colors.subtitleBg,
                                 ),
                                 padding: const EdgeInsets.symmetric(vertical: 2.5, horizontal: 10),
                                 child: Text(
                                   'Lecture',
-                                  style: AppStyles.s14w500.copyWith(color: AppColors.subtitle),
+                                  style: theme.textStyles.s14w500.copyWith(color: theme.colors.subtitle),
                                 ),
                               )
                             ],
                           ),
                           Text(
                             '08:15-9:15',
-                            style: AppStyles.s14w400.copyWith(
-                              color: AppColors.gray600,
+                            style: theme.textStyles.s14w400.copyWith(
+                              color: theme.colors.gray600,
                             ),
                           ),
                         ],

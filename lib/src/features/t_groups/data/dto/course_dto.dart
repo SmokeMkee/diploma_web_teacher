@@ -1,10 +1,5 @@
-// To parse this JSON data, do
-//
-//     final course = courseFromJson(jsonString);
 
 import 'dart:convert';
-
-
 List<GroupDTO> groupListFromJson(String str) => List<GroupDTO>.from(json.decode(str).map((x) => GroupDTO.fromJson(x)));
 
 class GroupDTO {

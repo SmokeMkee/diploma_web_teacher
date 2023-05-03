@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dio/dio.dart';
+import 'package:diploma_web_teacher/src/features/auth/repo/repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -10,49 +12,36 @@ part 'auth_event.dart';
 
 part 'auth_state.dart';
 
+
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc({required this.api}) : super(AuthInitial()) {
-    on<SignInEvent>(signIn);
+  AuthBloc({required this.repo}) : super(AuthInitial()) {
+    on<SignInEvent>(signIn , transformer:  droppable());
+    on<LogOutEvent>(logOut,transformer: droppable());
   }
-  Api api;
-  Future<void> signIn(SignInEvent event, Emitter<AuthState> emit) async {
 
+  RepoAuth repo;
+  var storage = const FlutterSecureStorage();
+
+  Future<void> logOut(LogOutEvent event, Emitter<AuthState> emit) async {
     try {
-      final response = await api.dio.get(
-          'user-info/get-user-info',
-          // data: {
-          //   "username" : 'merekee',
-          //   "password" : event.password,
-          //   "email" : event.email
-          // },
-          // options: Options(
-          //   contentType: Headers.jsonContentType,
-          //   responseType: ResponseType.json,
-          // ),
-          // queryParameters: {
-          //   'email': event.email,
-          //   'password': event.password
-          // },
+      storage.delete(key: 'token');
+    } catch (e) {}
+  }
 
-          );
-      print('dsa');
-      const storage = FlutterSecureStorage();
-      print(response.data);
-      // if (response.statusCode == 200) {
-      //    await storage.write(key: 'token', value: Welcome.fromJson(response.data).token);
-      //   print(response.data);
-      //   print('uraaa');
-      //   emit(AuthSuccessLogIn());
-      // }
+  Future<void> signIn(SignInEvent event, Emitter<AuthState> emit) async {
+    try {
+      final response = await repo.sign(event.email, event.password);
+      if(response.userType == 'student'){
+        emit(AuthError(message: 'неверный пароль или email'));
+      }else{
+        storage.write(key: 'token', value: response.token);
+        emit(AuthSuccessLogIn());
+      }
     } catch (e) {
-      DioError a = e as DioError;
-
-      print(a.response);
-     // print(a.response);
+      emit(AuthError(message: 'неверный пароль или email'));
     }
   }
 }
-
 
 class Welcome {
   Welcome({
@@ -62,10 +51,10 @@ class Welcome {
   String token;
 
   factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
-    token: json["token"],
-  );
+        token: json["token"],
+      );
 
   Map<String, dynamic> toJson() => {
-    "token": token,
-  };
+        "token": token,
+      };
 }

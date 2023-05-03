@@ -1,16 +1,23 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../constants/app_colors.dart';
 import '../../../../../../constants/app_styles.dart';
+import '../../../../widgets/app_back_button.dart';
 import '../../../../widgets/app_drop_down_button.dart';
 import '../../../../widgets/course_container.dart';
 import '../../../../widgets/header_widget.dart';
+import '../../../navigation/app_router/app_router.dart';
+import '../../../theme_manager/theme_manager.dart';
 
 class TGradeBookDetailedGroup extends StatelessWidget {
   const TGradeBookDetailedGroup({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: DefaultTabController(
@@ -23,7 +30,7 @@ class TGradeBookDetailedGroup extends StatelessWidget {
               withDisabilities: false,
             ),
           ),
-          backgroundColor: Colors.transparent,
+          backgroundColor: theme.colors.background,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -34,48 +41,48 @@ class TGradeBookDetailedGroup extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      // AppBackButton(
-                      //   onTap: () {
-                      //     context.router
-                      //         .popAndPush(const TGradeBookDetailedRoute());
-                      //   },
-                      // ),
+                      AppBackButton(
+                        onTap: () {
+                          context.router
+                              .pop(context);
+                        },
+                      ),
                       const SizedBox(width: 34),
-                      //const CourseContainer(),
+                       const CourseContainer(text: 'IT',),
                       const SizedBox(width: 25),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                           Text(
                             'General English',
-                            style: AppStyles.s15w500,
+                            style: theme.textStyles.s15w500,
                           ),
                           Text(
                             'ITIS-1914',
-                            style: AppStyles.s14w400.copyWith(
-                              color: AppColors.gray600,
+                            style: theme.textStyles.s14w400.copyWith(
+                              color: theme.colors.gray600,
                             ),
                           ),
                         ],
                       ),
                     ],
                   ),
-                  const Text(
+                   Text(
                     'Attendance: 89.34%',
-                    style: AppStyles.s15w500,
+                    style: theme.textStyles.s15w500,
                   )
                 ],
               ),
 
               const SizedBox(height: 34),
               TabBar(
-                unselectedLabelColor: AppColors.gray600,
+                unselectedLabelColor: theme.colors.gray600,
                 indicatorWeight: 6,
                 indicatorSize: TabBarIndicatorSize.label,
-                indicatorColor: AppColors.accent,
-                labelColor: AppColors.accent,
-                labelStyle: AppStyles.s15w500.copyWith(color: AppColors.accent),
+                indicatorColor: theme.colors.accent,
+                labelColor: theme.colors.accent,
+                labelStyle: theme.textStyles.s15w500.copyWith(color: theme.colors.accent),
                 tabs: const [
                   Tab(
                     text: 'Grades',
@@ -86,68 +93,56 @@ class TGradeBookDetailedGroup extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 23),
-              SizedBox(
-                width: MediaQuery.of(context).size.width / 3,
-                child: Row(
-                  children: const [
-                    Expanded(
-                      child: AppDropDownButton(
-                        items: [
-                          DropdownMenuItem(
-                            value: 'Week 1',
-                            child: Text(
-                              'Week 1',
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.black45,
-                              ),
-                            ),
-                          ),
-                          DropdownMenuItem(
-                            value: 'Week 2',
-                            child: Text(
-                              'Week 2',
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.black45,
-                              ),
-                            ),
-                          ),
-                        ],
-                        initial: 'Week 1',
-                      ),
-                    ),
-                    SizedBox(width: 20),
-                    Expanded(
-                      child: AppDropDownButton(
-                        items: [
-                          DropdownMenuItem(
-                            value: 'Classwork',
-                            child: Text(
-                              'Classwork',
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.black45,
-                              ),
-                            ),
-                          ),
-                          DropdownMenuItem(
-                            value: 'Home work',
-                            child: Text(
-                              'Home work',
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Colors.black45,
-                              ),
-                            ),
-                          ),
-                        ],
-                        initial: 'Classwork',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              // SizedBox(
+              //   width: MediaQuery.of(context).size.width / 3,
+              //   child: Row(
+              //     children:  [
+              //       Expanded(
+              //         child: AppDropDownButton(
+              //           items: [
+              //             DropdownMenuItem(
+              //               value: 'Week 1',
+              //               child: Text(
+              //                 'Week 1',
+              //                 style: theme.textStyles.s15w500
+              //               ),
+              //             ),
+              //              DropdownMenuItem(
+              //               value: 'Week 2',
+              //               child: Text(
+              //                 'Week 2',
+              //                 style:theme.textStyles.s15w500,
+              //               ),
+              //             ),
+              //           ],
+              //           initial: 'Week 1',
+              //         ),
+              //       ),
+              //       const SizedBox(width: 20),
+              //        Expanded(
+              //         child: AppDropDownButton(
+              //           items: [
+              //             DropdownMenuItem(
+              //               value: 'Classwork',
+              //               child: Text(
+              //                 'Classwork',
+              //                 style: theme.textStyles.s15w500
+              //               ),
+              //             ),
+              //             DropdownMenuItem(
+              //               value: 'Home work',
+              //               child: Text(
+              //                 'Home work',
+              //                 style: theme.textStyles.s15w500
+              //               ),
+              //             ),
+              //           ],
+              //           initial: 'Classwork',
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // ),
               const SizedBox(height: 25),
               const Expanded(
                 child: TabBarView(

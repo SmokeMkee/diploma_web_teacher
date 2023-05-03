@@ -4,19 +4,22 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../../constants/app_assets.dart';
 import '../../../../../constants/app_colors.dart';
-import '../../../../../constants/app_styles.dart';
 import '../../../widgets/app_border_button.dart';
 import '../../../widgets/app_eleavted_button.dart';
 import '../../../widgets/app_text_form_field.dart';
 import '../../../widgets/course_container.dart';
 import '../../../widgets/header_widget.dart';
 import '../../navigation/app_router/app_router.dart';
+import '../../theme_manager/theme_manager.dart';
 import '../data/bloc/group_bloc.dart';
 
 class TGroups extends StatelessWidget {
   const TGroups({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: DefaultTabController(
@@ -29,7 +32,7 @@ class TGroups extends StatelessWidget {
               withDisabilities: false,
             ),
           ),
-          backgroundColor: Colors.transparent,
+          backgroundColor: theme.colors.background,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -47,12 +50,12 @@ class TGroups extends StatelessWidget {
                       },
                       hintText: 'search',
                       hintStyle:
-                          AppStyles.s14w500.copyWith(color: AppColors.gray400),
+                          theme.textStyles.s14w500.copyWith(color: theme.colors.gray400),
                       prefixIcon: Padding(
                         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                         child: SvgPicture.asset(
                           AppAssets.svg.search,
-                          color: AppColors.gray200,
+                          color: theme.colors.gray200,
                         ),
                       ),
                     ),
@@ -117,6 +120,8 @@ class AppElevatedIconButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
@@ -128,12 +133,12 @@ class AppElevatedIconButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 14),
         child: Text(
           text,
-          style: AppStyles.s15w500.copyWith(color: AppColors.white),
+          style: theme.textStyles.s15w500.copyWith(color: theme.colors.white),
         ),
       ),
       icon: SvgPicture.asset(
         AppAssets.svg.add,
-        color: AppColors.white,
+        color: theme.colors.white,
       ),
     );
   }
@@ -145,6 +150,8 @@ class TGroupCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Padding(
       padding: const EdgeInsets.all(6),
       child: Card(
@@ -152,6 +159,8 @@ class TGroupCard extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
+        shadowColor: Colors.white,
+        color: theme.colors.background,
         margin: const EdgeInsets.symmetric(vertical: 6),
         child: Padding(
           padding: const EdgeInsets.all(25.0),
@@ -167,7 +176,7 @@ class TGroupCard extends StatelessWidget {
                   const SizedBox(width: 18),
                   Text(
                     nameGroup,
-                    style: AppStyles.s15w500,
+                    style: theme.textStyles.s15w500,
                   ),
                 ],
               ),
@@ -183,8 +192,11 @@ class TGroupCard extends StatelessWidget {
 void showAlertDialogCreateGroup(BuildContext context) {
   showDialog<String>(
     context: context,
-    builder: (BuildContext context) => AlertDialog(
-      titleTextStyle: AppStyles.s20w600,
+    builder: (BuildContext context) {
+      var theme = context.watch<ThemeManager>().theme;
+
+      return AlertDialog(
+      titleTextStyle: theme.textStyles.s20w600,
       titlePadding: const EdgeInsets.symmetric(vertical: 29, horizontal: 44),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -194,7 +206,8 @@ void showAlertDialogCreateGroup(BuildContext context) {
         width: MediaQuery.of(context).size.width / 3.5,
         child: const CreateGroupBodyDialog(),
       ),
-    ),
+    );
+    },
   );
 }
 

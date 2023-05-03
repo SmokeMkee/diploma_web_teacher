@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
 import '../../../widgets/header_widget.dart';
+import '../../theme_manager/theme_manager.dart';
 import '../settings_additional/additional.dart';
 import '../settings_notifications/notifications.dart';
 import '../settings_password/password.dart';
@@ -12,6 +14,7 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: DefaultTabController(
@@ -23,7 +26,7 @@ class SettingsScreen extends StatelessWidget {
               title: 'settings',
             ),
           ),
-          backgroundColor: Colors.transparent,
+          backgroundColor: theme.colors.background,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -31,12 +34,12 @@ class SettingsScreen extends StatelessWidget {
                 width: 550,
                 child: TabBar(
 
-                  unselectedLabelColor: AppColors.gray600,
+                  unselectedLabelColor: theme.colors.gray600,
                   indicatorWeight: 6,
                   indicatorSize: TabBarIndicatorSize.label,
-                  indicatorColor: AppColors.accent,
-                  labelColor: AppColors.accent,
-                  labelStyle: AppStyles.s15w500.copyWith(color: AppColors.accent),
+                  indicatorColor: theme.colors.accent,
+                  labelColor: theme.colors.accent,
+                  labelStyle: theme.textStyles.s15w500.copyWith(color: theme.colors.accent),
                   tabs: const [
                     Tab(
                       text: 'Password',

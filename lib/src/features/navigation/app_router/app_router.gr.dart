@@ -86,15 +86,13 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     TCoursesDetailedRoute.name: (routeData) {
+      final args = routeData.argsAs<TCoursesDetailedRouteArgs>();
       return AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const TCoursesDetailed(),
-      );
-    },
-    TGroupsRoute.name: (routeData) {
-      return AdaptivePage<dynamic>(
-        routeData: routeData,
-        child: const TGroups(),
+        child: TCoursesDetailed(
+          key: args.key,
+          groupId: args.groupId,
+        ),
       );
     },
     TGroupDetailedRoute.name: (routeData) {
@@ -105,6 +103,12 @@ class _$AppRouter extends RootStackRouter {
           key: args.key,
           group: args.group,
         ),
+      );
+    },
+    TGroupsRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const TGroups(),
       );
     },
     TGradeBookRoute.name: (routeData) {
@@ -174,6 +178,11 @@ class _$AppRouter extends RootStackRouter {
                 RouteConfig(
                   TCoursesDetailedRoute.name,
                   path: 't-courses-detailed',
+                  parent: TCoursesRouter.name,
+                ),
+                RouteConfig(
+                  TGroupDetailedRoute.name,
+                  path: 't-group-detailed',
                   parent: TCoursesRouter.name,
                 ),
               ],
@@ -398,26 +407,36 @@ class TCoursesRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [TCoursesDetailed]
-class TCoursesDetailedRoute extends PageRouteInfo<void> {
-  const TCoursesDetailedRoute()
-      : super(
+class TCoursesDetailedRoute extends PageRouteInfo<TCoursesDetailedRouteArgs> {
+  TCoursesDetailedRoute({
+    Key? key,
+    required int groupId,
+  }) : super(
           TCoursesDetailedRoute.name,
           path: 't-courses-detailed',
+          args: TCoursesDetailedRouteArgs(
+            key: key,
+            groupId: groupId,
+          ),
         );
 
   static const String name = 'TCoursesDetailedRoute';
 }
 
-/// generated route for
-/// [TGroups]
-class TGroupsRoute extends PageRouteInfo<void> {
-  const TGroupsRoute()
-      : super(
-          TGroupsRoute.name,
-          path: '',
-        );
+class TCoursesDetailedRouteArgs {
+  const TCoursesDetailedRouteArgs({
+    this.key,
+    required this.groupId,
+  });
 
-  static const String name = 'TGroupsRoute';
+  final Key? key;
+
+  final int groupId;
+
+  @override
+  String toString() {
+    return 'TCoursesDetailedRouteArgs{key: $key, groupId: $groupId}';
+  }
 }
 
 /// generated route for
@@ -452,6 +471,18 @@ class TGroupDetailedRouteArgs {
   String toString() {
     return 'TGroupDetailedRouteArgs{key: $key, group: $group}';
   }
+}
+
+/// generated route for
+/// [TGroups]
+class TGroupsRoute extends PageRouteInfo<void> {
+  const TGroupsRoute()
+      : super(
+          TGroupsRoute.name,
+          path: '',
+        );
+
+  static const String name = 'TGroupsRoute';
 }
 
 /// generated route for

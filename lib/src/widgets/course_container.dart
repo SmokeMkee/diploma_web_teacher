@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../constants/app_colors.dart';
 import '../../../constants/app_styles.dart';
+import '../features/theme_manager/theme_manager.dart';
 
 class CourseContainer extends StatelessWidget {
   const CourseContainer({Key? key, required this.text}) : super(key: key);
@@ -9,6 +11,8 @@ class CourseContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Container(
       width: 40,
       height: 40,
@@ -19,7 +23,7 @@ class CourseContainer extends StatelessWidget {
       child: Center(
         child: Text(
           text,
-          style: AppStyles.s18w500.copyWith(color: AppColors.white),
+          style: theme.textStyles.s18w500.copyWith(color: theme.colors.white),
         ),
       ),
     );

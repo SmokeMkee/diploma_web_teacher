@@ -10,6 +10,7 @@ part 'courses_state.dart';
 class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
   CoursesBloc({required this.repo}) : super(CoursesInitial()) {
     on<FetchCoursesEvent>(fetchData, transformer: droppable());
+    on<AddNewCoursesEvent>(addNewCourse, transformer: droppable());
   }
 
   List<Courses> listCourses = [];
@@ -24,6 +25,22 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
       listCourses.clear();
       listCourses.addAll(response);
       emit(CoursesData(listCourses: listCourses));
+    } catch (e) {
+      emit(CoursesError(message: 'something error'));
+    }
+  }
+
+  Future<void> addNewCourse(
+    AddNewCoursesEvent event,
+    Emitter<CoursesState> emit,
+  ) async {
+    try {
+      emit(CoursesLoading());
+      await repo.addNewCourse(
+        color: event.color,
+        courseName: event.courseName,
+        categoryId: event.categoryId,
+      );
     } catch (e) {
       emit(CoursesError(message: 'something error'));
     }

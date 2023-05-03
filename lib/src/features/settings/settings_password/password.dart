@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../constants/app_assets.dart';
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
 import '../../../widgets/app_text_form_field.dart';
+import '../../theme_manager/theme_manager.dart';
 
 class Password extends StatelessWidget {
   const Password({Key? key}) : super(key: key);
@@ -90,6 +92,7 @@ class PasswordTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 28),
       child: Row(
@@ -100,7 +103,7 @@ class PasswordTile extends StatelessWidget {
             flex: 1,
             child: Text(
               title,
-              style: AppStyles.s15w500,
+              style: theme.textStyles.s15w500,
             ),
           ),
           Flexible(

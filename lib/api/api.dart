@@ -22,13 +22,12 @@ class _BasicInterceptor implements Interceptor {
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     var value = await storage.read(key: 'token');
-    String token =
-        'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtZXJla2VldkBtYWlsLnJ1IiwiZXhwIjoxNjgxNzU0NDAwfQ.DZimYaucukOi-XAhkWsKXE-PwC7lhspP4x-tOnGs9ArDruy_L-K2nX8W_deT_BlyGwjJ-Re-9e0GH5pM_yrzng';
+
     options.contentType = 'application/json; charset=utf-8';
     options.responseType = ResponseType.json;
     options.headers = {
       "Accept": "application/json",
-      "Authorization": "Bearer $token"
+      "Authorization": "Bearer $value"
     };
     handler.next(options);
   }

@@ -11,7 +11,7 @@ class RepoGroupDetailed {
 
   Future<List<GroupDetailed>> fetch(int id) async {
     final result = await api.dio.get(
-        '/teacher/get-list-of-students-in-teacher-groups',
+        '/teacher-group/get-list-of-students-in-teacher-groups',
         queryParameters: {"groupId": id});
     List<GroupDetailed> listCourse =
         groupListFromJson(json.encode(result.data));
@@ -20,7 +20,7 @@ class RepoGroupDetailed {
 
   Future<void> deleteStudents(List<int> ids, int groupId) async {
     final result = await api.dio.delete(
-      '/teacher/delete-student-from-group',
+      '/teacher-group/delete-student-from-group',
       queryParameters: {
         "groupId": groupId,
         "studentId": ids,
@@ -34,7 +34,7 @@ class RepoGroupDetailed {
 
   Future<void> addStudent(String email, int groupId) async {
     await api.dio.post(
-      '/teacher/add-student-to-teacher-group',
+      '/teacher-group/add-student-to-teacher-group',
       queryParameters: {
         "email": email,
         "groupId": groupId,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../constants/app_colors.dart';
+import '../../theme_manager/theme_manager.dart';
 import '../app_router/app_router.dart';
 import '../navigation.dart';
 
@@ -9,17 +11,22 @@ class PrimaryScreen extends StatelessWidget {
   final String? name;
   @override
   Widget build(BuildContext context) {
+    var theme  = context.watch<ThemeManager>().theme;
     return WillPopScope(
       onWillPop: () async {
         return false;
       },
       child: SafeArea(
         child: AutoTabsScaffold(
-          backgroundColor: AppColors.white,
+          backgroundColor: theme.colors.background,
           builder: (context, child, animation) => Row(
             children: [
               const SizedBox(
                 width: 250,
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 19),
+                child: Container(height: double.infinity, width: 5,color: theme.colors.gray200,),
               ),
               Expanded(child: child)
             ],

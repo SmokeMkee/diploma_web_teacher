@@ -1,20 +1,38 @@
+import 'dart:html';
+
 import 'package:diploma_web_teacher/src/features/t_profile/ui/widget/body.dart';
+import 'package:diploma_web_teacher/src/features/theme_manager/inclusive_technologies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter/foundation.dart' show kIsWeb;
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
 import '../../../widgets/app_border_button.dart';
 import '../../../widgets/app_eleavted_button.dart';
 import '../../../widgets/header_widget.dart';
+import '../../theme_manager/src/theme_light.dart';
+import '../../theme_manager/theme_manager.dart';
 import '../data/bloc/profile_bloc.dart';
 
-
-class TProfileScreen extends StatelessWidget {
+class TProfileScreen extends StatefulWidget {
   const TProfileScreen({Key? key}) : super(key: key);
 
   @override
+  State<TProfileScreen> createState() => _TProfileScreenState();
+}
+
+class _TProfileScreenState extends State<TProfileScreen> {
+  @override
+  void didChangeDependencies() {
+    context.read<ProfileBloc>().add(
+          FetchInfoProfile(),
+        );
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: Scaffold(
@@ -38,6 +56,18 @@ class TProfileScreen extends StatelessWidget {
             if (state is ProfileData) {
               return Row(
                 children: [
+                  ElevatedButton(
+                      onPressed: () {
+                        InclusiveTechnologies.textScale = 2;
+                        setState(() {
+
+                        });
+                        print(theme.textStyles.s15w500);
+                      },
+                      child: Text(
+                        'sd',
+                        style: theme.textStyles.s15w500,
+                      )),
                   Expanded(
                     flex: 4,
                     child: SingleChildScrollView(
@@ -47,8 +77,10 @@ class TProfileScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(width: 100),
-                  const Expanded(
-                    child: LeftSideBar(),
+                  Expanded(
+                    child: LeftSideBar(
+                      fullName: '${state.data.name} ${state.data.surname}',
+                    ),
                   ),
                 ],
               );
@@ -62,26 +94,31 @@ class TProfileScreen extends StatelessWidget {
 }
 
 class LeftSideBar extends StatelessWidget {
-  const LeftSideBar({Key? key}) : super(key: key);
+  const LeftSideBar({Key? key, required this.fullName}) : super(key: key);
+  final String fullName;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: const [
-        PhotoWidget(),
-
+      children: [
+        PhotoWidget(
+          fullName: fullName,
+        ),
       ],
     );
   }
 }
 
 class PhotoWidget extends StatelessWidget {
-  const PhotoWidget({Key? key}) : super(key: key);
+  const PhotoWidget({Key? key, required this.fullName}) : super(key: key);
+  final String fullName;
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -95,14 +132,15 @@ class PhotoWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
-              'Mary Jane',
-              style: AppStyles.s18w500,
+            Text(
+              fullName,
+              style: theme.textStyles.s18w500,
             ),
             const SizedBox(height: 6),
             Text(
               'Teacher',
-              style: AppStyles.s15w400.copyWith(color: AppColors.gray600),
+              style: theme.textStyles.s15w400
+                  .copyWith(color: theme.colors.gray600),
             ),
             const SizedBox(height: 16),
             Row(
@@ -138,17 +176,19 @@ class ResumeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           'Resume',
-          style: AppStyles.s17w500,
+          style: theme.textStyles.s17w500,
         ),
         const SizedBox(height: 9),
         Text(
           'Here you can create your resume',
-          style: AppStyles.s15w400.copyWith(color: AppColors.gray400),
+          style: theme.textStyles.s15w400.copyWith(color: theme.colors.gray400),
         ),
         const SizedBox(height: 24),
       ],

@@ -30,6 +30,7 @@ class GroupBloc extends Bloc<GroupEvent, GroupState> {
       listGroups.addAll(response);
       emit(GroupData(listCourse: listGroups));
     } catch (e) {
+      print(e);
       emit(GroupError(message: 'something error'));
     }
   }

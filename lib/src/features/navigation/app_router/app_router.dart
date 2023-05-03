@@ -43,6 +43,7 @@ part 'app_router.gr.dart';
             AutoRoute(
               page: TCoursesDetailed,
             ),
+            AutoRoute(page: TGroupDetailed)
           ],
         ),
         AutoRoute(

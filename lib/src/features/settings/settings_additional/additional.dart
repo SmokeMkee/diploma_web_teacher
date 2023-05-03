@@ -1,18 +1,24 @@
+import 'package:diploma_web_teacher/src/features/theme_manager/src/main_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../constants/app_assets.dart';
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
 import '../../../widgets/app_divider.dart';
 import '../../../widgets/app_drop_down_button.dart';
+import '../../theme_manager/theme_manager.dart';
 import '../settings_notifications/notifications.dart';
+import 'data/repo/test.dart';
 
 class AdditionalSettings extends StatelessWidget {
   const AdditionalSettings({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final _theme = context.watch<ThemeManager>().theme;
     return SingleChildScrollView(
       child: LayoutBuilder(
         builder: (context, constraints) {
@@ -20,30 +26,33 @@ class AdditionalSettings extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 40),
-              const Text(
+              Text(
                 'LANGUAGE',
-                style: AppStyles.s18w500,
+                style: _theme.textStyles.s18w500,
               ),
               const SizedBox(height: 9),
-              Text(
-                'Select the types of notifications you will receive.',
-                style: AppStyles.s15w500.copyWith(color: AppColors.gray600),
-              ),
-              const SizedBox(height: 21),
               const DropButton(),
+              const SizedBox(height: 40),
+              Text(
+                'Theme',
+                style: _theme.textStyles.s18w500,
+              ),
+              const SizedBox(height: 9),
+              const DropButtonTheme(),
+
               const SizedBox(height: 52),
               AppDivider(
                 width: constraints.maxWidth,
               ),
               const SizedBox(height: 50),
-              const Text(
+               Text(
                 'INCLUSIVE TECHNOLOGY',
-                style: AppStyles.s18w500,
+                style: _theme.textStyles.s18w500,
               ),
               const SizedBox(height: 9),
               Text(
                 'Select system features for people with disabilities',
-                style: AppStyles.s15w500.copyWith(color: AppColors.gray600),
+                style: _theme.textStyles.s14w400.copyWith(color: _theme.colors.gray600),
               ),
               const InclusiveTile(),
               AppDivider(
@@ -83,6 +92,103 @@ class AdditionalSettings extends StatelessWidget {
   }
 }
 
+class DropButtonTheme extends StatefulWidget {
+  const DropButtonTheme({Key? key}) : super(key: key);
+
+  @override
+  State<DropButtonTheme> createState() => _DropButtonThemeState();
+}
+
+class _DropButtonThemeState extends State<DropButtonTheme> {
+  ThemeType categoryValue = ThemeType.light;
+
+  @override
+  Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
+    return Container(
+      width: 400,
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: theme.colors.gray200, width: 2),
+      ),
+      child: DropdownButtonHideUnderline(
+        child: DropdownButton(
+
+          focusColor: theme.colors.white,
+          icon: SvgPicture.asset(
+            AppAssets.svg.arrowDown,
+            color: theme.colors.gray400,
+          ),
+
+          isExpanded: true,
+          hint: Text(
+            ThemeType.light.name,
+            style: theme.textStyles.s15w400
+          ),
+          value: categoryValue,
+          items: [
+            DropdownMenuItem(
+              value: ThemeType.light,
+              child: Text(
+                ThemeType.light.name,
+                style: theme.textStyles.s15w400.copyWith(
+                  color: theme.colors.gray400,
+                ),
+              ),
+            ),
+            DropdownMenuItem(
+              value: ThemeType.darkContrast,
+              child: Text(
+                ThemeType.darkContrast.name,
+                style: theme.textStyles.s15w400.copyWith(
+                  color: theme.colors.gray400,
+                ),
+              ),
+            ),
+            DropdownMenuItem(
+              value: ThemeType.highSaturation,
+              child: Text(
+                ThemeType.highSaturation.name,
+                style: theme.textStyles.s15w400.copyWith(
+                  color: theme.colors.gray400,
+                ),
+              ),
+            ),
+            DropdownMenuItem(
+              value: ThemeType.invert,
+              child: Text(
+                ThemeType.invert.name,
+                style: theme.textStyles.s15w400.copyWith(
+                  color: theme.colors.gray400,
+                ),
+              ),
+            ),
+            DropdownMenuItem(
+              value: ThemeType.lowSaturation,
+              child: Text(
+                ThemeType.lowSaturation.name,
+                style: theme.textStyles.s15w400.copyWith(
+                  color: theme.colors.gray400,
+                ),
+              ),
+            ),
+          ],
+          onChanged: (val) {
+            setState(
+              () {
+                categoryValue = val ?? ThemeType.light;
+              },
+            );
+            context.read<ThemeManager>().changeTheme(val ?? ThemeType.light);
+          },
+        ),
+      ),
+    );
+  }
+}
+
 class DropButton extends StatefulWidget {
   const DropButton({Key? key}) : super(key: key);
 
@@ -95,19 +201,21 @@ class _DropButtonState extends State<DropButton> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Container(
       width: 400,
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: AppColors.gray200, width: 2),
+        border: Border.all(color: theme.colors.gray200, width: 2),
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton(
           focusColor: Colors.transparent,
           icon: SvgPicture.asset(
             AppAssets.svg.arrowDown,
-            color: AppColors.gray400,
+            color: theme.colors.gray400,
           ),
           isExpanded: true,
           hint: LanguageTile(
@@ -143,20 +251,23 @@ class _DropButtonState extends State<DropButton> {
 }
 
 class LanguageTile extends StatelessWidget {
-  const LanguageTile({Key? key, required this.title, required this.svgPath}) : super(key: key);
+  const LanguageTile({Key? key, required this.title, required this.svgPath})
+      : super(key: key);
   final String title;
   final String svgPath;
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Row(
       children: [
         SvgPicture.asset(svgPath),
         const SizedBox(width: 15),
         Text(
           title,
-          style: AppStyles.s15w400.copyWith(
-            color: AppColors.gray400,
+          style: theme.textStyles.s15w400.copyWith(
+            color: theme.colors.gray400,
           ),
         ),
       ],
@@ -169,6 +280,8 @@ class InclusiveTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 40),
       child: Row(
@@ -177,19 +290,20 @@ class InclusiveTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'INCLUSIVE TECHNOLOGY',
-                  style: AppStyles.s15w500,
+                  style: theme.textStyles.s15w500,
                 ),
                 const SizedBox(height: 9),
                 Text(
                   'Select system features for people with disabilities',
-                  style: AppStyles.s15w500.copyWith(color: AppColors.gray600),
+                  style: theme.textStyles.s15w500
+                      .copyWith(color: theme.colors.gray600),
                 ),
               ],
             ),
           ),
-          const SizedBox(
+          SizedBox(
             width: 330,
             child: AppDropDownButton(
               items: [
@@ -199,7 +313,7 @@ class InclusiveTile extends StatelessWidget {
                     'A (0%)',
                     style: TextStyle(
                       fontSize: 15,
-                      color: Colors.black45,
+                      color: theme.colors.primary,
                     ),
                   ),
                 ),
@@ -209,7 +323,7 @@ class InclusiveTile extends StatelessWidget {
                     'Almaty',
                     style: TextStyle(
                       fontSize: 15,
-                      color: Colors.black45,
+                      color: theme.colors.primary,
                     ),
                   ),
                 ),

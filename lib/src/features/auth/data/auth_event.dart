@@ -8,3 +8,5 @@ class SignInEvent extends AuthEvent {
   final String email;
   final String password;
 }
+
+class LogOutEvent extends AuthEvent {}

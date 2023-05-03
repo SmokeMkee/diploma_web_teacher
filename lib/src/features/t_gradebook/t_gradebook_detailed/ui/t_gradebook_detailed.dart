@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../../constants/app_assets.dart';
 import '../../../../../../constants/app_styles.dart';
+import '../../../../widgets/app_back_button.dart';
 import '../../../../widgets/course_container.dart';
 import '../../../../widgets/header_widget.dart';
 import '../../../../widgets/search_widget.dart';
+import '../../../navigation/app_router/app_router.dart';
+import '../../../theme_manager/theme_manager.dart';
 
 class TGradeBookDetailed extends StatelessWidget {
   const TGradeBookDetailed({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: DefaultTabController(
@@ -24,23 +30,23 @@ class TGradeBookDetailed extends StatelessWidget {
               withDisabilities: false,
             ),
           ),
-          backgroundColor: Colors.transparent,
+          backgroundColor: theme.colors.background,
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                children: const [
-                  // AppBackButton(
-                  //   onTap: () {
-                  //     context.router.popAndPush(const TGradeBookRouter());
-                  //   },
-                  // ),
-                  SizedBox(width: 34),
-                 // CourseContainer(),
-                  SizedBox(width: 24),
+                children:  [
+                  AppBackButton(
+                    onTap: () {
+                      context.router.popAndPush(const TGradeBookRouter());
+                    },
+                  ),
+                  const SizedBox(width: 34),
+                  const CourseContainer(text: 'GE',),
+                  const SizedBox(width: 24),
                   Text(
                     'General English',
-                    style: AppStyles.s18w500,
+                    style: theme.textStyles.s18w500,
                   )
                 ],
               ),
@@ -50,7 +56,7 @@ class TGradeBookDetailed extends StatelessWidget {
                 child: ListView.builder(
                   itemBuilder: (context, int index) {
                     return GestureDetector(
-                      //onTap: () => context.router.push(const TGradeBookDetailedGroupRoute()),
+                      onTap: () => context.router.push(const TGradeBookDetailedGroupRoute()),
                       child: const TGradeBookDetailedCard(),
                     );
                   },
@@ -70,6 +76,8 @@ class TGradeBookDetailedCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Padding(
       padding: const EdgeInsets.all(6),
       child: Card(
@@ -85,12 +93,12 @@ class TGradeBookDetailedCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(
-                children: const [
-                  //CourseContainer(),
-                  SizedBox(width: 18),
+                children:  [
+                  const CourseContainer(text: 'IT',),
+                  const SizedBox(width: 18),
                   Text(
                     'ITIS -1914',
-                    style: AppStyles.s15w500,
+                    style: theme.textStyles.s15w500,
                   ),
                 ],
               ),

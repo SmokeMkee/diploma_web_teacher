@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
 import '../../../navigation/app_router/app_router.dart';
+import '../../../theme_manager/theme_manager.dart';
 
 class LeftSideBar extends StatelessWidget {
   const LeftSideBar({Key? key}) : super(key: key);
@@ -26,17 +28,19 @@ class ResumeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+         Text(
           'Resume',
-          style: AppStyles.s17w500,
+          style: theme.textStyles.s17w500,
         ),
         const SizedBox(height: 9),
         Text(
           'Here you can create your resume',
-          style: AppStyles.s15w400.copyWith(color: AppColors.gray400),
+          style: theme.textStyles.s15w400.copyWith(color: theme.colors.gray400),
         ),
         const SizedBox(height: 24),
       ],
@@ -49,6 +53,8 @@ class PhotoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -62,14 +68,14 @@ class PhotoWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Text(
+             Text(
               'Mary Jane',
-              style: AppStyles.s18w500,
+              style: theme.textStyles.s18w500,
             ),
             const SizedBox(height: 6),
             Text(
               'Student',
-              style: AppStyles.s15w400.copyWith(color: AppColors.gray600),
+              style: theme.textStyles.s15w400.copyWith(color: theme.colors.gray600),
             ),
             const SizedBox(height: 16),
             Row(
@@ -108,9 +114,11 @@ class AppElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: AppColors.accent,
+        backgroundColor: theme.colors.accent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -120,7 +128,7 @@ class AppElevatedButton extends StatelessWidget {
         padding: const EdgeInsets.symmetric(vertical: 14),
         child: Text(
           title,
-          style: AppStyles.s15w500.copyWith(color: AppColors.white),
+          style: theme.textStyles.s15w500.copyWith(color: theme.colors.white),
         ),
       ),
     );
@@ -135,18 +143,20 @@ class AppBorderButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.white,
+        backgroundColor: theme.colors.white,
         shape: RoundedRectangleBorder(
-          side: const BorderSide(color: AppColors.gray200, width: 1),
+          side:  BorderSide(color: theme.colors.gray200, width: 1),
           borderRadius: BorderRadius.circular(8),
         ),
       ),
       onPressed: onTap,
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 14),
-        child: Text(title, style: AppStyles.s15w500),
+        child: Text(title, style: theme.textStyles.s15w500),
       ),
     );
   }

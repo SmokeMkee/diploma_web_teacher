@@ -15,6 +15,7 @@ import '../../../../widgets/course_container.dart';
 import '../../../../widgets/header_widget.dart';
 import '../../../navigation/app_router/app_router.dart';
 import '../../../t_gradebook/t_gradebook_detailed_group/ui/t_gradebook_detailed_course.dart';
+import '../../../theme_manager/theme_manager.dart';
 import '../../ui/t_groups.dart';
 import '../data/dto/detailed_group.dart';
 
@@ -37,6 +38,8 @@ class _TGroupDetailedState extends State<TGroupDetailed> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: Scaffold(
@@ -64,10 +67,10 @@ class _TGroupDetailedState extends State<TGroupDetailed> {
                     const SizedBox(width: 34),
                     CourseContainer(
                       text:
-                          widget.group.groupName[0] + widget.group.groupName[1],
+                          widget.group.groupName[0],
                     ),
                     const SizedBox(width: 25),
-                    Text(widget.group.groupName, style: AppStyles.s18w500)
+                    Text(widget.group.groupName, style: theme.textStyles.s18w500)
                   ],
                 ),
                 AppElevatedIconButton(

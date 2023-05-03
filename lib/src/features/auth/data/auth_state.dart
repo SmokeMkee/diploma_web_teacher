@@ -5,5 +5,11 @@ abstract class AuthState {}
 class AuthInitial extends AuthState {}
 
 class AuthLoading extends AuthState {}
+
 class AuthSuccessLogIn extends AuthState {}
-class AuthError extends AuthState {}
+
+class AuthError extends AuthState {
+  AuthError({required this.message});
+
+  final String message;
+}

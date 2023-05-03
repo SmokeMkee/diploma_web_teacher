@@ -13,4 +13,16 @@ class RepoCourses {
     List<Courses> listCourse = coursesFromJson(json.encode(result.data));
     return listCourse;
   }
+
+  Future<void> addNewCourse({
+    required String color,
+    required String courseName,
+    required int categoryId,
+  }) async {
+    final result = await api.dio.post('/teacher/add-new-courses' , data: {
+      "courseName" : courseName,
+      "color" : color,
+      "categoryId" : categoryId,
+    });
+  }
 }

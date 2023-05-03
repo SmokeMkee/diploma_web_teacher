@@ -53,4 +53,6 @@ class _Svg {
   final String add = 'assets/svg/add.svg';
   final String addCircleBold = 'assets/svg/add_circle_bold.svg';
 
+  final String boldDelete = 'assets/svg/bold_delete.svg';
+
 }

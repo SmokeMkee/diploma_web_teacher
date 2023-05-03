@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../../constants/app_colors.dart';
 import '../../../../../../constants/app_assets.dart';
 import '../../../../../../constants/app_styles.dart';
 import '../../../../widgets/app_text_form_field.dart';
 import '../../../localization/generated/l10n.dart';
+import '../../../theme_manager/theme_manager.dart';
 import '../../sign_in/ui/authorization_screen.dart';
 import '../../widgets/auth_widget.dart';
 
@@ -31,6 +33,7 @@ class _NewPasswordState extends State<NewPassword> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
     return Scaffold(
       backgroundColor: AppColors.background,
       body: AuthScreenWidget(
@@ -49,7 +52,7 @@ class _NewPasswordState extends State<NewPassword> {
                   }
                 },
                 hintText: S.of(context).password,
-                hintStyle: AppStyles.s15w400.copyWith(color: AppColors.gray400),
+                hintStyle: theme.textStyles.s15w400,
                 obscureText: _obscureText1,
                 textEditingController: controller,
                 suffixIcon: Padding(
@@ -61,7 +64,7 @@ class _NewPasswordState extends State<NewPassword> {
                     },
                     icon: SvgPicture.asset(
                       _obscureText1 == true ? AppAssets.svg.slashEye : AppAssets.svg.eye,
-                      color: AppColors.gray200,
+                      color: theme.colors.gray200,
                     ),
                   ),
                 ),
@@ -76,7 +79,7 @@ class _NewPasswordState extends State<NewPassword> {
                   }
                 },
                 hintText: S.of(context).password,
-                hintStyle: AppStyles.s15w400.copyWith(color: AppColors.gray400),
+                hintStyle: theme.textStyles.s15w400.copyWith(color: theme.colors.gray400),
                 obscureText: _obscureText2,
                 textEditingController: controller2,
                 suffixIcon: Padding(
@@ -88,7 +91,7 @@ class _NewPasswordState extends State<NewPassword> {
                     },
                     icon: SvgPicture.asset(
                       _obscureText2 == true ? AppAssets.svg.slashEye : AppAssets.svg.eye,
-                      color: AppColors.gray200,
+                      color: theme.colors.gray200,
                     ),
                   ),
                 ),

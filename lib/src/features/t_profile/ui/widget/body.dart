@@ -7,6 +7,7 @@ import '../../../../../../constants/app_colors.dart';
 import '../../../../../../constants/app_styles.dart';
 import '../../../../widgets/app_drop_down_button.dart';
 import '../../../../widgets/app_text_form_field.dart';
+import '../../../theme_manager/theme_manager.dart';
 import '../../data/bloc/profile_bloc.dart';
 import '../../data/dto/profile_model.dart';
 
@@ -54,19 +55,21 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         const SizedBox(height: 54),
-        const Text(
+         Text(
           'User information',
-          style: AppStyles.s15w500,
+          style: theme.textStyles.s15w500,
         ),
         Text(
           'Here you can manage your account',
-          style: AppStyles.s15w500.copyWith(
-            color: AppColors.gray600,
+          style: theme.textStyles.s15w500.copyWith(
+            color: theme.colors.gray600,
           ),
         ),
         const SizedBox(height: 38),
@@ -113,10 +116,10 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
               padding: const EdgeInsets.all(15.5),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
-                  color: AppColors.accent),
+                  color: theme.colors.accent),
               child: SvgPicture.asset(
                 AppAssets.svg.scheduleBold,
-                color: AppColors.white,
+                color: theme.colors.white,
               ),
             )
           ],
@@ -129,7 +132,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: SvgPicture.asset(
               AppAssets.svg.email,
-              color: AppColors.gray200,
+              color: theme.colors.gray200,
             ),
           ),
           controller: email,
@@ -143,69 +146,69 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: SvgPicture.asset(
               AppAssets.svg.email,
-              color: AppColors.gray200,
+              color: theme.colors.gray200,
             ),
           ),
         ),
-        const SizedBox(height: 24),
-        Row(
-          children: const [
-            Flexible(
-              child: AppDropDownButton(
-                items: [
-                  DropdownMenuItem(
-                    value: 'Almaty',
-                    child: Text(
-                      'Almaty',
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black45,
-                      ),
-                    ),
-                  ),
-                  DropdownMenuItem(
-                    value: 'almaty',
-                    child: Text(
-                      'Almaty',
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black45,
-                      ),
-                    ),
-                  ),
-                ],
-                initial: 'Almaty',
-              ),
-            ),
-            SizedBox(width: 23),
-            Flexible(
-                child: AppDropDownButton(
-              items: [
-                DropdownMenuItem(
-                  value: 'Almaty',
-                  child: Text(
-                    'Almaty',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black45,
-                    ),
-                  ),
-                ),
-                DropdownMenuItem(
-                  value: 'almaty',
-                  child: Text(
-                    'Almaty',
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Colors.black45,
-                    ),
-                  ),
-                ),
-              ],
-              initial: 'Almaty',
-            )),
-          ],
-        ),
+        //const SizedBox(height: 24),
+        // Row(
+        //   children: const [
+        //     Flexible(
+        //       child: AppDropDownButton(
+        //         items: [
+        //           DropdownMenuItem(
+        //             value: 'Almaty',
+        //             child: Text(
+        //               'Almaty',
+        //               style: TextStyle(
+        //                 fontSize: 15,
+        //                 color: Colors.black45,
+        //               ),
+        //             ),
+        //           ),
+        //           DropdownMenuItem(
+        //             value: 'almaty',
+        //             child: Text(
+        //               'Almaty',
+        //               style: TextStyle(
+        //                 fontSize: 15,
+        //                 color: Colors.black45,
+        //               ),
+        //             ),
+        //           ),
+        //         ],
+        //         initial: 'Almaty',
+        //       ),
+        //     ),
+        //     SizedBox(width: 23),
+        //     Flexible(
+        //         child: AppDropDownButton(
+        //       items: [
+        //         DropdownMenuItem(
+        //           value: 'Almaty',
+        //           child: Text(
+        //             'Almaty',
+        //             style: TextStyle(
+        //               fontSize: 15,
+        //               color: Colors.black45,
+        //             ),
+        //           ),
+        //         ),
+        //         DropdownMenuItem(
+        //           value: 'almaty',
+        //           child: Text(
+        //             'Almaty',
+        //             style: TextStyle(
+        //               fontSize: 15,
+        //               color: Colors.black45,
+        //             ),
+        //           ),
+        //         ),
+        //       ],
+        //       initial: 'Almaty',
+        //     )),
+        //   ],
+        // ),
         const SizedBox(height: 28),
         AppTextFormField(
           validator: (value) {
@@ -217,20 +220,19 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
           },
           textEditingController: street,
           hintText: 'Street',
-          hintStyle: AppStyles.s15w400.copyWith(color: AppColors.gray400),
+          hintStyle: theme.textStyles.s15w400.copyWith(color: theme.colors.gray400),
         ),
         const SizedBox(height: 40),
         Row(
           children: [
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.accent,
+                backgroundColor: theme.colors.accent,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
               onPressed: () {
-                print(firstName.text);
                 context.read<ProfileBloc>().add(
                       UpdateInfoProfile(
                         profile: Profile(
@@ -251,23 +253,23 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 child: Text(
                   'Save changes',
-                  style: AppStyles.s15w500.copyWith(color: AppColors.white),
+                  style: theme.textStyles.s15w500.copyWith(color: theme.colors.white),
                 ),
               ),
             ),
             const SizedBox(width: 24),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
+                backgroundColor: theme.colors.white,
                 shape: RoundedRectangleBorder(
-                  side: const BorderSide(color: AppColors.gray200, width: 1),
+                  side:  BorderSide(color: theme.colors.gray200, width: 1),
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
               onPressed: () {},
-              child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 14),
-                child: Text('Delete', style: AppStyles.s15w500),
+              child:  Padding(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                child: Text('Delete', style: theme.textStyles.s15w500),
               ),
             ),
           ],
@@ -293,13 +295,15 @@ class ProfileTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           label,
-          style: AppStyles.s15w400,
+          style: theme.textStyles.s15w400,
         ),
         AppTextFormField(
           textEditingController: controller,
@@ -310,9 +314,10 @@ class ProfileTile extends StatelessWidget {
               return null;
             }
           },
+
           suffixIcon: suffixIcon,
           hintText: hintText,
-          hintStyle: AppStyles.s15w400.copyWith(color: AppColors.gray400),
+          hintStyle: theme.textStyles.s15w400,
         ),
       ],
     );
@@ -324,6 +329,8 @@ class FullNameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -334,9 +341,9 @@ class FullNameWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                   Text(
                     'First name',
-                    style: AppStyles.s15w400,
+                    style: theme.textStyles.s15w400,
                   ),
                   AppTextFormField(
                     validator: (value) {
@@ -348,7 +355,7 @@ class FullNameWidget extends StatelessWidget {
                     },
                     hintText: 'Enter your first name',
                     hintStyle:
-                        AppStyles.s15w400.copyWith(color: AppColors.gray400),
+                        theme.textStyles.s15w400.copyWith(color: theme.colors.gray400),
                   ),
                 ],
               ),
@@ -359,9 +366,9 @@ class FullNameWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                   Text(
                     'Second name',
-                    style: AppStyles.s15w400,
+                    style: theme.textStyles.s15w400,
                   ),
                   AppTextFormField(
                     validator: (value) {
@@ -373,7 +380,7 @@ class FullNameWidget extends StatelessWidget {
                     },
                     hintText: 'Enter your second name',
                     hintStyle:
-                        AppStyles.s15w400.copyWith(color: AppColors.gray400),
+                        theme.textStyles.s15w400.copyWith(color: theme.colors.gray400),
                   ),
                 ],
               ),
@@ -381,9 +388,9 @@ class FullNameWidget extends StatelessWidget {
           ],
         ),
         const SizedBox(height: 24),
-        const Text(
+         Text(
           'Patronymic name',
-          style: AppStyles.s15w400,
+          style: theme.textStyles.s15w400,
         ),
         AppTextFormField(
           validator: (value) {
@@ -394,7 +401,7 @@ class FullNameWidget extends StatelessWidget {
             }
           },
           hintText: 'Enter your patronymic name',
-          hintStyle: AppStyles.s15w400.copyWith(color: AppColors.gray400),
+          hintStyle: theme.textStyles.s15w400.copyWith(color: theme.colors.gray400),
         ),
       ],
     );

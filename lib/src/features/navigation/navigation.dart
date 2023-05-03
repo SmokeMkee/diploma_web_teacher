@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../constants/app_assets.dart';
@@ -6,6 +7,7 @@ import '../../../../constants/app_colors.dart';
 import '../../../constants/app_styles.dart';
 import '../../widgets/log_out.dart';
 import '../localization/generated/l10n.dart';
+import '../theme_manager/theme_manager.dart';
 
 class Navigation extends StatelessWidget {
   const Navigation({Key? key, required this.switchTo, required this.current,}) : super(key: key);
@@ -14,11 +16,12 @@ class Navigation extends StatelessWidget {
   final int current;
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
     return Row(
       children: [
         NavigationRail(
           trailing: const LogOutWidget(),
-          backgroundColor: AppColors.background,
+          backgroundColor: theme.colors.background,
           labelType: NavigationRailLabelType.none,
           extended: true,
           destinations: [
@@ -69,6 +72,7 @@ class Navigation extends StatelessWidget {
                 inactiveIconPath: AppAssets.svg.settings,
               ),
             ),
+
           ],
           selectedIndex: current,
           onDestinationSelected: (index) => switchTo(index),
@@ -85,17 +89,18 @@ class NavBarProfileLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           label,
-          style: AppStyles.s17w500.copyWith(
-            color: isActive ? AppColors.gray900 : AppColors.gray600,
+          style: theme.textStyles.s17w500.copyWith(
+            color: isActive ? theme.colors.gray900 : theme.colors.gray600,
             fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
           ),
         ),
-        SvgPicture.asset(AppAssets.svg.arrowRight2)
+        SvgPicture.asset(AppAssets.svg.arrowRight2 , color: isActive ? theme.colors.gray900 : theme.colors.gray600,)
       ],
     );
   }
@@ -112,7 +117,7 @@ class NavBarProfileIcon extends StatelessWidget {
         'https://thumbs.dreamstime.com/b/businessman-icon-image-male-'
         'avatar-profile-vector-glasses-beard-hairstyle-179728610.jpg',
       ),
-      backgroundColor: Colors.transparent,
+      //backgroundColor: Colors.transparent,
     );
   }
 }
@@ -124,10 +129,11 @@ class NavBarLabel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
     return Text(
       label,
       style: AppStyles.s15w500.copyWith(
-        color: isActive ? AppColors.gray900 : AppColors.gray600,
+        color: isActive ? theme.colors.gray900 : theme.colors.gray600,
         fontWeight: isActive ? FontWeight.bold : FontWeight.normal,
       ),
       textAlign: TextAlign.center,
@@ -150,8 +156,11 @@ class _NavBarSvg extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme  = context.watch<ThemeManager>().theme;
+
     return SvgPicture.asset(
       isActive ? activeIconPath : inactiveIconPath,
+      color: isActive ? theme.colors.gray900 : theme.colors.gray600,
     );
   }
 }

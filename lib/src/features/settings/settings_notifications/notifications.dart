@@ -1,4 +1,6 @@
+import 'package:diploma_web_teacher/src/features/theme_manager/theme_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
@@ -41,6 +43,7 @@ class NotificationTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = context.watch<ThemeManager>().theme;
     return Column(
       children: [
         Padding(
@@ -52,14 +55,14 @@ class NotificationTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    const Text(
+                     Text(
                       'Assignments',
-                      style: AppStyles.s15w500,
+                      style: theme.textStyles.s15w500,
                     ),
-                    const SizedBox(height: 6),
+                     const SizedBox(height: 6),
                     Text(
                       'Select the types of notifications you will receive.',
-                      style: AppStyles.s15w500.copyWith(color: AppColors.gray600),
+                      style: theme.textStyles.s15w500.copyWith(color: AppColors.gray600),
                     ),
                   ],
                 ),

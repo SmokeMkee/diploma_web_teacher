@@ -24,12 +24,15 @@ class GroupDetailedBloc extends Bloc<GroupDetailedEvent, GroupDetailedState> {
   ) async {
     try {
       emit(GroupDetailedLoading(groupId: state.groupId));
+      print(state.groupId );
+      print(event.email);
       await repo.addStudent(event.email, state.groupId);
       final response = await repo.fetch(state.groupId);
       studentList.clear();
       studentList.addAll(response);
       emit(GroupDetailedData(listStudents: studentList, groupId: state.groupId));
     } catch (e) {
+      print((e as DioError).error);
       emit(
           GroupDetailedError(error: 'something error', groupId: state.groupId));
     }
@@ -69,7 +72,9 @@ class GroupDetailedBloc extends Bloc<GroupDetailedEvent, GroupDetailedState> {
   ) async {
     try {
       emit(GroupDetailedLoading(groupId: event.groupId));
+      print(event.groupId);
       final response = await repo.fetch(event.groupId);
+      print(response);
       studentList.clear();
       studentList.addAll(response);
 
