@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../constants/app_assets.dart';
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
+import '../../../localization/generated/l10n.dart';
 import '../../../theme_manager/theme_manager.dart';
 import 'create_course_dialog.dart';
 
@@ -39,7 +40,7 @@ class CreateCourseCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 17),
                 Text(
-                  'Create new course',
+                  S.of(context).createNewCourse,
                   style: theme.textStyles.s14w400.copyWith(
                     color: theme.colors.gray600,
                   ),

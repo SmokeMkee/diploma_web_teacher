@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
+import '../../localization/generated/l10n.dart';
 
 class NotificationSettings extends StatelessWidget {
   const NotificationSettings({Key? key}) : super(key: key);
@@ -15,13 +16,13 @@ class NotificationSettings extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 40),
-          const Text(
-            'NOTIFICATIONS',
+           Text(
+            S.of(context).notifications,
             style: AppStyles.s18w500,
           ),
           const SizedBox(height: 9),
           Text(
-            'Select the types of notifications you will receive.',
+           S.of(context).selectTheTypesOfNotificationsYouWillReceive,
             style: AppStyles.s15w500.copyWith(color: AppColors.gray600),
           ),
           const NotificationTile(),
@@ -56,12 +57,12 @@ class NotificationTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                      Text(
-                      'Assignments',
+                      S.of(context).assignments,
                       style: theme.textStyles.s15w500,
                     ),
                      const SizedBox(height: 6),
                     Text(
-                      'Select the types of notifications you will receive.',
+                      S.of(context).selectTheTypesOfNotificationsYouWillReceive,
                       style: theme.textStyles.s15w500.copyWith(color: AppColors.gray600),
                     ),
                   ],
@@ -80,7 +81,7 @@ class NotificationTile extends StatelessWidget {
                       horizontal: 32,
                     ),
                     child: Text(
-                      'Change',
+                      S.of(context).change,
                       style: AppStyles.s15w500.copyWith(
                         color: AppColors.gray900,
                       ),

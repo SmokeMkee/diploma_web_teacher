@@ -9,6 +9,7 @@ import '../../../widgets/app_eleavted_button.dart';
 import '../../../widgets/app_text_form_field.dart';
 import '../../../widgets/course_container.dart';
 import '../../../widgets/header_widget.dart';
+import '../../localization/generated/l10n.dart';
 import '../../navigation/app_router/app_router.dart';
 import '../../theme_manager/theme_manager.dart';
 import '../data/bloc/group_bloc.dart';
@@ -19,16 +20,15 @@ class TGroups extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = context.watch<ThemeManager>().theme;
 
-
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: const PreferredSize(
+          appBar: PreferredSize(
             preferredSize: Size(double.infinity, 200),
             child: HeaderWidget(
-              title: 'Groups',
+              title: S.of(context).groups,
               withDisabilities: false,
             ),
           ),
@@ -48,9 +48,9 @@ class TGroups extends StatelessWidget {
                             .read<GroupBloc>()
                             .add(SearchGroupEvent(query: value));
                       },
-                      hintText: 'search',
-                      hintStyle:
-                          theme.textStyles.s14w500.copyWith(color: theme.colors.gray400),
+                      hintText: S.of(context).search,
+                      hintStyle: theme.textStyles.s14w500
+                          .copyWith(color: theme.colors.gray400),
                       prefixIcon: Padding(
                         padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                         child: SvgPicture.asset(
@@ -61,7 +61,7 @@ class TGroups extends StatelessWidget {
                     ),
                   ),
                   AppElevatedIconButton(
-                    text: 'Create new group',
+                    text: S.of(context).createNewGroup,
                     onTap: () {
                       showAlertDialogCreateGroup(context);
                     },
@@ -196,17 +196,17 @@ void showAlertDialogCreateGroup(BuildContext context) {
       var theme = context.watch<ThemeManager>().theme;
 
       return AlertDialog(
-      titleTextStyle: theme.textStyles.s20w600,
-      titlePadding: const EdgeInsets.symmetric(vertical: 29, horizontal: 44),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
-      ),
-      title: const Text('New group'),
-      content: SizedBox(
-        width: MediaQuery.of(context).size.width / 3.5,
-        child: const CreateGroupBodyDialog(),
-      ),
-    );
+        titleTextStyle: theme.textStyles.s20w600,
+        titlePadding: const EdgeInsets.symmetric(vertical: 29, horizontal: 44),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        title: const Text('New group'),
+        content: SizedBox(
+          width: MediaQuery.of(context).size.width / 3.5,
+          child: const CreateGroupBodyDialog(),
+        ),
+      );
     },
   );
 }
@@ -239,7 +239,7 @@ class _CreateGroupBodyDialogState extends State<CreateGroupBodyDialog> {
             Expanded(
               child: AppTextFormField(
                 textEditingController: controller,
-                hintText: 'Enter the title',
+                hintText: S.of(context).enterTheTitle,
               ),
             ),
           ],
@@ -253,7 +253,7 @@ class _CreateGroupBodyDialogState extends State<CreateGroupBodyDialog> {
         ),
         Row(
           children: [
-            const Text('Color'),
+            Text(S.of(context).color),
             const SizedBox(width: 20),
             ...List.generate(
               5,
@@ -275,7 +275,7 @@ class _CreateGroupBodyDialogState extends State<CreateGroupBodyDialog> {
           children: [
             Expanded(
               child: AppBorderButton(
-                title: 'Cancel',
+                title: S.of(context).cancel,
                 onTap: () {
                   context.router.pop();
                 },
@@ -284,7 +284,7 @@ class _CreateGroupBodyDialogState extends State<CreateGroupBodyDialog> {
             const SizedBox(width: 20),
             Expanded(
               child: AppElevatedButton(
-                title: 'Create',
+                title: S.of(context).create,
                 onTap: () {
                   context.read<GroupBloc>().add(
                         CreateGroupEvent(nameGroup: controller.text),

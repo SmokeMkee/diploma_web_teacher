@@ -13,6 +13,7 @@ import '../../../../widgets/app_eleavted_button.dart';
 import '../../../../widgets/app_text_form_field.dart';
 import '../../../../widgets/course_container.dart';
 import '../../../../widgets/header_widget.dart';
+import '../../../localization/generated/l10n.dart';
 import '../../../navigation/app_router/app_router.dart';
 import '../../../t_gradebook/t_gradebook_detailed_group/ui/t_gradebook_detailed_course.dart';
 import '../../../theme_manager/theme_manager.dart';
@@ -44,11 +45,11 @@ class _TGroupDetailedState extends State<TGroupDetailed> {
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        appBar: const PreferredSize(
-          preferredSize: Size(double.infinity, 200),
+        appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 200),
           child: HeaderWidget(
             withDisabilities: false,
-            title: 'Groups',
+            title: S.of(context).groups,
           ),
         ),
         body: Column(
@@ -66,15 +67,15 @@ class _TGroupDetailedState extends State<TGroupDetailed> {
                     ),
                     const SizedBox(width: 34),
                     CourseContainer(
-                      text:
-                          widget.group.groupName[0],
+                      text: widget.group.groupName[0],
                     ),
                     const SizedBox(width: 25),
-                    Text(widget.group.groupName, style: theme.textStyles.s18w500)
+                    Text(widget.group.groupName,
+                        style: theme.textStyles.s18w500)
                   ],
                 ),
                 AppElevatedIconButton(
-                  text: 'Add students',
+                  text: S.of(context).addStudents,
                   onTap: () {
                     showAlertDialogAddStudent(context);
                   },
@@ -168,9 +169,9 @@ class _GroupTableWidgetState extends State<GroupTableWidget> {
                       },
                     ),
                     const HeaderTableText(text: ''),
-                    const HeaderTableText(text: 'Surname'),
-                    const HeaderTableText(text: 'First name'),
-                    const HeaderTableText(text: 'Email'),
+                    HeaderTableText(text: S.of(context).secondName),
+                    HeaderTableText(text: S.of(context).firstName),
+                    HeaderTableText(text: S.of(context).emailAddress),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20),
                       child: ElevatedButton(
@@ -180,7 +181,7 @@ class _GroupTableWidgetState extends State<GroupTableWidget> {
                               .add(DeleteStudentEvent());
                         },
                         child: Text(
-                          'Delete selected',
+                          S.of(context).deleteSelected,
                           style: AppStyles.s15w500
                               .copyWith(color: AppColors.white),
                         ),
@@ -209,13 +210,13 @@ class _GroupTableWidgetState extends State<GroupTableWidget> {
                           ),
                         ),
                         TableCell(
-                          child: BodyTableText(text: e.surname ?? 'No info'),
+                          child: BodyTableText(text: e.surname ?? S.of(context).noInfo),
                         ),
                         TableCell(
-                          child: BodyTableText(text: e.firstname ?? 'N0 info'),
+                          child: BodyTableText(text: e.firstname ?? S.of(context).noInfo),
                         ),
                         TableCell(
-                          child: BodyTableText(text: e.email ?? 'No info'),
+                          child: BodyTableText(text: e.email ?? S.of(context).noInfo),
                         ),
                         TableCell(
                           verticalAlignment: TableCellVerticalAlignment.middle,
@@ -238,10 +239,10 @@ class _GroupTableWidgetState extends State<GroupTableWidget> {
                                   ),
                                   backgroundColor: Colors.white,
                                   elevation: 5),
-                              child: const Padding(
+                              child: Padding(
                                 padding: EdgeInsets.all(10.0),
                                 child: Text(
-                                  'Change',
+                                  S.of(context).change,
                                   style: AppStyles.s15w500,
                                 ),
                               ),
@@ -270,7 +271,7 @@ void showAlertDialogAddStudent(BuildContext context) {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
       ),
-      title: const Text('Add student by email'),
+      title: Text(S.of(context).addStudentByEmail),
       content: SizedBox(
         width: MediaQuery.of(context).size.width / 3.5,
         child: const AddStudentBody(),
@@ -302,12 +303,12 @@ class _AddStudentBodyState extends State<AddStudentBody> {
       children: [
         Row(
           children: [
-            const Text('Email'),
+             Text(S.of(context).emailAddress),
             const SizedBox(width: 54),
             Expanded(
               child: AppTextFormField(
                   textEditingController: controller,
-                  hintText: 'Enter the email'),
+                  hintText: S.of(context).enterYourEmailAddress),
             ),
           ],
         ),
@@ -317,7 +318,7 @@ class _AddStudentBodyState extends State<AddStudentBody> {
           children: [
             Expanded(
               child: AppBorderButton(
-                title: 'Cancel',
+                title: S.of(context).cancel,
                 onTap: () {
                   context.router.pop();
                 },
@@ -326,7 +327,7 @@ class _AddStudentBodyState extends State<AddStudentBody> {
             const SizedBox(width: 20),
             Expanded(
               child: AppElevatedButton(
-                title: 'Save',
+                title: S.of(context).save,
                 onTap: () {
                   context.read<GroupDetailedBloc>().add(
                         AddStudentEvent(email: controller.text),
@@ -345,23 +346,23 @@ class _AddStudentBodyState extends State<AddStudentBody> {
 void showAlertDialogOnTapStudent(
     BuildContext context, int studentId, int groupId) {
   List<String> list = [
-    'General English',
-    'UI/UX Design',
-    'Web Development',
-    'Animation',
-    'General English',
-    'UI/UX Design'
+    S.of(context).generalEnglish,
+    S.of(context).uiUxDesign,
+    S.of(context).webDevelopment,
+    S.of(context).animation,
+    S.of(context).generalEnglish,
+    S.of(context).uiUxDesign,
   ];
   showDialog<String>(
     context: context,
     builder: (BuildContext context) => AlertDialog(
-      title: const Text('Robert Perry'),
+      title: Text(S.of(context).robertPerry),
       content: Column(
         children: [
           SizedBox(
             width: 350,
             child: AppTextFormField(
-              hintText: 'search',
+              hintText: S.of(context).search,
               hintStyle: AppStyles.s14w500.copyWith(color: AppColors.gray400),
               prefixIcon: Padding(
                 padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),

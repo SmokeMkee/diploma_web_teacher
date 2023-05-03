@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../constants/app_colors.dart';
 import '../../../../../../constants/app_styles.dart';
 import '../../../../widgets/course_container.dart';
+import '../../../localization/generated/l10n.dart';
 import '../../../theme_manager/theme_manager.dart';
 
 class GradeBookCard extends StatelessWidget {
@@ -40,11 +41,11 @@ class GradeBookCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                        Text(
-                        'General English',
+                        S.of(context).generalEnglish,
                         style: theme.textStyles.s15w500,
                       ),
                       Text(
-                        'Teacher: Alan Alexander',
+                        S.of(context).teacherAlanAlexander,
                         style: theme.textStyles.s14w400.copyWith(
                           color: theme.colors.gray600,
                         ),

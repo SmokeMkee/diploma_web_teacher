@@ -5,6 +5,8 @@ import 'package:flutter_svg/svg.dart';
 import '../../../constants/app_assets.dart';
 import '../../../constants/app_colors.dart';
 import '../../../constants/app_styles.dart';
+import '../features/localization/generated/l10n.dart';
+import '../features/localization/i_locale_repo.dart';
 import '../features/theme_manager/theme_manager.dart';
 
 
@@ -24,9 +26,11 @@ class AppFilterButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      onPressed: () {},
+      onPressed: () async {
+        await context.read<ILocaleRepo>().apply('kk');
+      },
       label: Text(
-        'Filter',
+        S.of(context).filter,
         style: theme.textStyles.s14w500.copyWith(color: theme.colors.gray400),
       ),
       icon: SvgPicture.asset(

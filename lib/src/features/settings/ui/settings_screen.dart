@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
 import '../../../widgets/header_widget.dart';
+import '../../localization/generated/l10n.dart';
 import '../../theme_manager/theme_manager.dart';
 import '../settings_additional/additional.dart';
 import '../settings_notifications/notifications.dart';
@@ -20,10 +21,10 @@ class SettingsScreen extends StatelessWidget {
       child: DefaultTabController(
         length: 3,
         child: Scaffold(
-          appBar: const PreferredSize(
+          appBar: PreferredSize(
             preferredSize: Size(double.infinity, 200),
             child: HeaderWidget(
-              title: 'settings',
+              title: S.of(context).settings,
             ),
           ),
           backgroundColor: theme.colors.background,
@@ -40,15 +41,15 @@ class SettingsScreen extends StatelessWidget {
                   indicatorColor: theme.colors.accent,
                   labelColor: theme.colors.accent,
                   labelStyle: theme.textStyles.s15w500.copyWith(color: theme.colors.accent),
-                  tabs: const [
+                  tabs: [
                     Tab(
-                      text: 'Password',
+                      text: S.of(context).password,
                     ),
                     Tab(
-                      text: 'Notifications',
+                      text: S.of(context).notifications,
                     ),
                     Tab(
-                      text: 'Additional Settings',
+                      text: S.of(context).additionalSettings,
                     ),
                   ],
                 ),

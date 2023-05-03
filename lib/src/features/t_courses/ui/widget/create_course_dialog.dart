@@ -11,6 +11,7 @@ import '../../../../widgets/app_border_button.dart';
 import '../../../../widgets/app_drop_down_button.dart';
 import '../../../../widgets/app_eleavted_button.dart';
 import '../../../../widgets/app_text_field.dart';
+import '../../../localization/generated/l10n.dart';
 import '../../../theme_manager/theme_manager.dart';
 
 void showAlertDialogCreateCourse(BuildContext context) {
@@ -25,7 +26,7 @@ void showAlertDialogCreateCourse(BuildContext context) {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        title: const Text('New course'),
+        title: Text(S.of(context).newCourse),
         content: Body(theme: theme),
       );
     },
@@ -62,12 +63,12 @@ class _BodyState extends State<Body> {
         children: [
           Row(
             children: [
-              const Text('Title'),
+              Text(S.of(context).title),
               const SizedBox(width: 54),
               Expanded(
                 child: AppTextFormField(
                   textEditingController: nameController,
-                  hintText: 'Enter the title',
+                  hintText: S.of(context).enterTheTitle,
                 ),
               ),
             ],
@@ -95,7 +96,7 @@ class _BodyState extends State<Body> {
           ),
           Row(
             children: [
-              const Text('Color'),
+              Text(S.of(context).color),
               const SizedBox(width: 20),
               ...List.generate(
                 5,
@@ -117,7 +118,7 @@ class _BodyState extends State<Body> {
             children: [
               Expanded(
                 child: AppBorderButton(
-                  title: 'Cancel',
+                  title: S.of(context).cancel,
                   onTap: () {
                     context.router.pop();
                   },
@@ -126,19 +127,18 @@ class _BodyState extends State<Body> {
               const SizedBox(width: 20),
               Expanded(
                 child: AppElevatedButton(
-                  title: 'Create',
+                  title: S.of(context).create,
                   onTap: () {
-                    if(nameController.text.isNotEmpty) {
+                    if (nameController.text.isNotEmpty) {
                       context.read<CoursesBloc>().add(
-                          AddNewCoursesEvent(
-                            courseName: nameController.text,
-                            color: '0xFFE6E5EC',
-                            categoryId: 0,
-                          ),
-                        );
+                            AddNewCoursesEvent(
+                              courseName: nameController.text,
+                              color: '0xFFE6E5EC',
+                              categoryId: 0,
+                            ),
+                          );
                     }
                     context.router.pop();
-
                   },
                 ),
               )

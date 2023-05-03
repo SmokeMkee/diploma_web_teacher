@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../constants/app_assets.dart';
 import '../../../constants/app_colors.dart';
 import '../../../constants/app_styles.dart';
+import '../features/localization/generated/l10n.dart';
 import '../features/theme_manager/theme_manager.dart';
 import 'app_filter_buttun.dart';
 import 'app_text_form_field.dart';
@@ -20,7 +21,7 @@ class SearchWidget extends StatelessWidget {
         SizedBox(
           width: 350,
           child: AppTextFormField(
-            hintText: 'search',
+            hintText: S.of(context).search,
             hintStyle: theme.textStyles.s14w500.copyWith(color:theme.colors.gray400),
             prefixIcon: Padding(
               padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),

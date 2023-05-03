@@ -9,6 +9,7 @@ import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
 import '../../../widgets/app_divider.dart';
 import '../../../widgets/app_drop_down_button.dart';
+import '../../localization/generated/l10n.dart';
 import '../../theme_manager/theme_manager.dart';
 import '../settings_notifications/notifications.dart';
 import 'data/repo/test.dart';
@@ -27,14 +28,14 @@ class AdditionalSettings extends StatelessWidget {
             children: [
               const SizedBox(height: 40),
               Text(
-                'LANGUAGE',
+                S.of(context).language.toUpperCase(),
                 style: _theme.textStyles.s18w500,
               ),
               const SizedBox(height: 9),
               const DropButton(),
               const SizedBox(height: 40),
               Text(
-                'Theme',
+                S.of(context).theme,
                 style: _theme.textStyles.s18w500,
               ),
               const SizedBox(height: 9),
@@ -46,12 +47,12 @@ class AdditionalSettings extends StatelessWidget {
               ),
               const SizedBox(height: 50),
                Text(
-                'INCLUSIVE TECHNOLOGY',
+                S.of(context).inclusiveTechnology.toUpperCase(),
                 style: _theme.textStyles.s18w500,
               ),
               const SizedBox(height: 9),
               Text(
-                'Select system features for people with disabilities',
+                S.of(context).selectSystemFeaturesForPeopleWithDisabilities,
                 style: _theme.textStyles.s14w400.copyWith(color: _theme.colors.gray600),
               ),
               const InclusiveTile(),
@@ -115,7 +116,6 @@ class _DropButtonThemeState extends State<DropButtonTheme> {
       ),
       child: DropdownButtonHideUnderline(
         child: DropdownButton(
-
           focusColor: theme.colors.white,
           icon: SvgPicture.asset(
             AppAssets.svg.arrowDown,
@@ -291,12 +291,12 @@ class InclusiveTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'INCLUSIVE TECHNOLOGY',
+                  S.of(context).inclusiveTechnology.toUpperCase(),
                   style: theme.textStyles.s15w500,
                 ),
                 const SizedBox(height: 9),
                 Text(
-                  'Select system features for people with disabilities',
+                  S.of(context).selectSystemFeaturesForPeopleWithDisabilities,
                   style: theme.textStyles.s15w500
                       .copyWith(color: theme.colors.gray600),
                 ),
@@ -320,7 +320,7 @@ class InclusiveTile extends StatelessWidget {
                 DropdownMenuItem(
                   value: 'B',
                   child: Text(
-                    'Almaty',
+                    S.of(context).almaty,
                     style: TextStyle(
                       fontSize: 15,
                       color: theme.colors.primary,

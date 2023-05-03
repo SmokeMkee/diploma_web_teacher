@@ -6,6 +6,7 @@ import '../../../../../constants/app_styles.dart';
 import '../../../widgets/course_card.dart';
 import '../../../widgets/header_widget.dart';
 import '../../../widgets/search_widget.dart';
+import '../../localization/generated/l10n.dart';
 import '../../navigation/app_router/app_router.dart';
 import '../../theme_manager/theme_manager.dart';
 import '../data/bloc/courses_bloc.dart';
@@ -21,10 +22,10 @@ class TCourses extends StatelessWidget {
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: const PreferredSize(
+          appBar: PreferredSize(
             preferredSize: Size(double.infinity, 200),
             child: HeaderWidget(
-              title: 'Courses',
+              title: S.of(context).courses,
             ),
           ),
           backgroundColor: theme.colors.background,
@@ -44,8 +45,8 @@ class TCourses extends StatelessWidget {
                       indicatorSize: TabBarIndicatorSize.label,
                       indicatorWeight: 6,
                       indicatorColor: theme.colors.accent,
-                      tabs: const [
-                        Tab(text: 'All courses'),
+                      tabs: [
+                        Tab(text: S.of(context).allCourses),
                       ],
                     ),
                     const SizedBox(height: 20),

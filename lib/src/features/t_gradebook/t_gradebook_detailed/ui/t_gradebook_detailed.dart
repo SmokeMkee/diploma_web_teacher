@@ -8,6 +8,7 @@ import '../../../../widgets/app_back_button.dart';
 import '../../../../widgets/course_container.dart';
 import '../../../../widgets/header_widget.dart';
 import '../../../../widgets/search_widget.dart';
+import '../../../localization/generated/l10n.dart';
 import '../../../navigation/app_router/app_router.dart';
 import '../../../theme_manager/theme_manager.dart';
 
@@ -23,10 +24,10 @@ class TGradeBookDetailed extends StatelessWidget {
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: const PreferredSize(
-            preferredSize: Size(double.infinity, 200),
+          appBar: PreferredSize(
+            preferredSize: const Size(double.infinity, 200),
             child: HeaderWidget(
-              title: 'gradebook',
+              title: S.of(context).gradeBook,
               withDisabilities: false,
             ),
           ),
@@ -45,7 +46,7 @@ class TGradeBookDetailed extends StatelessWidget {
                   const CourseContainer(text: 'GE',),
                   const SizedBox(width: 24),
                   Text(
-                    'General English',
+                    S.of(context).generalEnglish,
                     style: theme.textStyles.s18w500,
                   )
                 ],

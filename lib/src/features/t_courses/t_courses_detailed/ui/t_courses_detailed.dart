@@ -11,6 +11,7 @@ import '../../../../../../constants/app_styles.dart';
 import '../../../../widgets/app_back_button.dart';
 import '../../../../widgets/course_container.dart';
 import '../../../../widgets/header_widget.dart';
+import '../../../localization/generated/l10n.dart';
 import '../../../navigation/app_router/app_router.dart';
 import '../../../theme_manager/theme_manager.dart';
 
@@ -58,11 +59,11 @@ class TCoursesDetailed extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'General English',
+                            S.of(context).generalEnglish,
                             style: theme.textStyles.s15w500,
                           ),
                           Text(
-                            'Teacher: Alan Alexander',
+                            S.of(context).teacherAlanAlexander,
                             style: theme.textStyles.s14w400.copyWith(
                               color: theme.colors.gray600,
                             ),
@@ -83,7 +84,7 @@ class TCoursesDetailed extends StatelessWidget {
                         label: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 14),
                           child: Text(
-                            'Add students',
+                            S.of(context).addStudents,
                             style: theme.textStyles.s15w500
                                 .copyWith(color: theme.colors.white),
                           ),
@@ -105,9 +106,9 @@ class TCoursesDetailed extends StatelessWidget {
                 labelColor: theme.colors.accent,
                 labelStyle: theme.textStyles.s15w500
                     .copyWith(color: theme.colors.accent),
-                tabs: const [
-                  Text('Units'),
-                  Text('List of students'),
+                tabs: [
+                  Text(S.of(context).units),
+                  Text(S.of(context).listOfStudents),
                 ],
               ),
               const SizedBox(height: 25),
