@@ -10,10 +10,9 @@ import '../../../../../widgets/app_text_field.dart';
 import '../../../../../widgets/app_text_form_field.dart';
 import '../../../../theme_manager/theme_manager.dart';
 
-void showAlertDialogCreateUnit(BuildContext context , int id) {
+void showAlertDialogCreateUnit(BuildContext context, int id) {
   showDialog<String>(
     context: context,
-
     builder: (BuildContext context) {
       var theme = context.watch<ThemeManager>().theme;
 
@@ -24,17 +23,21 @@ void showAlertDialogCreateUnit(BuildContext context , int id) {
           borderRadius: BorderRadius.circular(10),
         ),
         title: const Text('New unit'),
-        content: const Body(),
+        content: Body(
+          id: id,
+        ),
       );
     },
-  ).then((value) =>
-      context.read<CoursesDetailedBloc>().add(FetchUnits(unitId: id)));
+  );
 }
 
 class Body extends StatefulWidget {
   const Body({
     super.key,
+    required this.id,
   });
+
+  final int id;
 
   @override
   State<Body> createState() => _BodyState();
@@ -85,7 +88,7 @@ class _BodyState extends State<Body> {
                   onTap: () {
                     context
                         .read<CoursesDetailedBloc>()
-                        .add(AddNewUnit(id: 0, name: name.text));
+                        .add(AddNewUnit(id: widget.id, name: name.text));
                     context.router.pop();
                   },
                 ),

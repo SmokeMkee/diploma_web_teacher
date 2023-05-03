@@ -17,43 +17,20 @@ class SettingsScreen extends StatelessWidget {
     var theme = context.watch<ThemeManager>().theme;
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
-      child: DefaultTabController(
-        length: 3,
-        child: Scaffold(
-          appBar: const PreferredSize(
-            preferredSize: Size(double.infinity, 200),
-            child: HeaderWidget(
-              title: 'settings',
-            ),
+      child: Scaffold(
+        appBar: const PreferredSize(
+          preferredSize: Size(double.infinity, 200),
+          child: HeaderWidget(
+            title: 'settings',
           ),
-          backgroundColor: theme.colors.background,
-          body: Column(
+        ),
+        backgroundColor: theme.colors.background,
+        body: SingleChildScrollView(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: 550,
-                child: TabBar(
+            children: const [
+              AdditionalSettings(),
 
-                  unselectedLabelColor: theme.colors.gray600,
-                  indicatorWeight: 6,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  indicatorColor: theme.colors.accent,
-                  labelColor: theme.colors.accent,
-                  labelStyle: theme.textStyles.s15w500.copyWith(color: theme.colors.accent),
-                  tabs: const [
-                    Tab(
-                      text: 'Password',
-                    ),
-                    Tab(
-                      text: 'Notifications',
-                    ),
-                    Tab(
-                      text: 'Additional Settings',
-                    ),
-                  ],
-                ),
-              ),
-               const Expanded(child: TabBarView(children: [Password(), NotificationSettings(), AdditionalSettings()]))
             ],
           ),
         ),

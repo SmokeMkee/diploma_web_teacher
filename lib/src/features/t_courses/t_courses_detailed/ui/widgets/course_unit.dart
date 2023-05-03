@@ -1,5 +1,7 @@
+import 'package:diploma_web_teacher/src/features/navigation/app_router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../courses_detailed_lesson/ui/lesson.dart';
 import '../../data/bloc/courses_detailed_bloc.dart';
 import 'create_unit_card.dart';
 import 'create_unit_dialog.dart';
@@ -28,21 +30,26 @@ class _TCoursesDetailedUnitsState extends State<TCoursesDetailedUnits> {
     return BlocBuilder<CoursesDetailedBloc, CoursesDetailedState>(
       builder: (context, state) {
         if (state is CoursesDetailedLoading) {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         }
         if (state is CoursesDetailedData) {
           return ListView(
             children: [
               GestureDetector(
-                onTap: () => showAlertDialogCreateUnit(context , widget.groupId),
+                onTap: () => showAlertDialogCreateUnit(context, widget.groupId),
                 child: const CreateUnitCard(),
               ),
               ...List.generate(
                 state.list.length,
                 (index) {
-                  return CoursesDetailedCard(
-                    unit: state.list[index],
-                    number: index,
+                  return GestureDetector(
+                    onTap: () => context.router.push(
+                      const CoursesDetailedLessonRoute(),
+                    ),
+                    child: CoursesDetailedCard(
+                      unit: state.list[index],
+                      number: index,
+                    ),
                   );
                 },
               ),

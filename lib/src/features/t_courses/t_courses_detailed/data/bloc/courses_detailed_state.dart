@@ -12,4 +12,14 @@ class CoursesDetailedData extends CoursesDetailedState {
   final List<Unit> list;
 }
 
-class CoursesDetailedError extends CoursesDetailedState {}
+
+class CoursesDetailedGroupsData extends CoursesDetailedState {
+  CoursesDetailedGroupsData({required this.list});
+
+  final List<Groups> list;
+}
+
+class CoursesDetailedError extends CoursesDetailedState {
+  CoursesDetailedError({required this.message});
+  final String message;
+}

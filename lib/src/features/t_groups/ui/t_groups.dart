@@ -80,6 +80,7 @@ class TGroups extends StatelessWidget {
                     return Expanded(
                       child: ListView.builder(
                         itemBuilder: (context, int index) {
+                          print(state.listCourse[index].id);
                           return GestureDetector(
                             onTap: () => context.router.push(
                               TGroupDetailedRoute(

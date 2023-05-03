@@ -1,26 +1,23 @@
 part of 'group_detailed_bloc.dart';
 
-abstract class GroupDetailedState {
-  GroupDetailedState({required this.groupId});
-  final int  groupId;
-}
+abstract class GroupDetailedState {}
 
-class GroupDetailedInitial extends GroupDetailedState {
-  GroupDetailedInitial({required super.groupId});
-}
+class GroupDetailedInitial extends GroupDetailedState {}
 
-class GroupDetailedLoading extends GroupDetailedState {
-  GroupDetailedLoading({required super.groupId});
-}
+class GroupDetailedLoading extends GroupDetailedState {}
 
 class GroupDetailedData extends GroupDetailedState {
-  GroupDetailedData({required this.listStudents, required super.groupId});
+  GroupDetailedData({
+    required this.listStudents,
+  });
 
   final List<GroupDetailed> listStudents;
 }
 
 class GroupDetailedError extends GroupDetailedState {
-  GroupDetailedError({required this.error, required super.groupId});
+  GroupDetailedError({
+    required this.error,
+  });
 
   final String error;
 }

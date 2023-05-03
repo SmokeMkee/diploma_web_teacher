@@ -11,38 +11,38 @@ part 'group_detailed_event.dart';
 part 'group_detailed_state.dart';
 
 class GroupDetailedBloc extends Bloc<GroupDetailedEvent, GroupDetailedState> {
-  GroupDetailedBloc({required this.repo})
-      : super(GroupDetailedInitial(groupId: 0)) {
+  GroupDetailedBloc({required this.repo}) : super(GroupDetailedInitial()) {
     on<FetchDataEvent>(fetchData);
     on<AddStudentEvent>(addStudent);
     on<DeleteStudentEvent>(deleteUsers);
   }
+
   List<GroupDetailed> studentList = [];
+
   Future<void> addStudent(
     AddStudentEvent event,
     Emitter<GroupDetailedState> emit,
   ) async {
     try {
-      emit(GroupDetailedLoading(groupId: state.groupId));
-      print(state.groupId );
-      print(event.email);
-      await repo.addStudent(event.email, state.groupId);
-      final response = await repo.fetch(state.groupId);
+      emit(GroupDetailedLoading());
+      await repo.addStudent(event.email, event.groupId);
+      final response = await repo.fetch(event.groupId);
       studentList.clear();
       studentList.addAll(response);
-      emit(GroupDetailedData(listStudents: studentList, groupId: state.groupId));
+      emit(GroupDetailedData(
+        listStudents: studentList,
+      ));
     } catch (e) {
-      print((e as DioError).error);
-      emit(
-          GroupDetailedError(error: 'something error', groupId: state.groupId));
+      emit(GroupDetailedError(
+        error: 'something error',
+      ));
     }
   }
 
-
   Future<void> deleteUsers(
-      DeleteStudentEvent event,
-      Emitter<GroupDetailedState> emit,
-      ) async {
+    DeleteStudentEvent event,
+    Emitter<GroupDetailedState> emit,
+  ) async {
     try {
       List<int> list = [];
       for (int i = 0; i < studentList.length; i++) {
@@ -50,19 +50,19 @@ class GroupDetailedBloc extends Bloc<GroupDetailedEvent, GroupDetailedState> {
           list.add(studentList[i].id!);
         }
       }
-      print(list);
-     // emit(AdminLoading());
-      emit(GroupDetailedLoading(groupId: state.groupId));
+      emit(GroupDetailedLoading());
 
-      await repo.deleteStudents(list , state.groupId);
-      final response = await repo.fetch(state.groupId);
+      await repo.deleteStudents(list, event.groupId);
+      final response = await repo.fetch(event.groupId);
       studentList.clear();
       studentList.addAll(response);
-      emit(GroupDetailedData(listStudents: studentList, groupId: state.groupId));
+      emit(GroupDetailedData(
+        listStudents: studentList,
+      ));
     } catch (e) {
-      var a = e as DioError;
-      print(a.requestOptions.data);
-      emit(GroupDetailedError(error: 'something error', groupId: state.groupId));
+      emit(GroupDetailedError(
+        error: 'something error',
+      ));
     }
   }
 
@@ -71,18 +71,19 @@ class GroupDetailedBloc extends Bloc<GroupDetailedEvent, GroupDetailedState> {
     Emitter<GroupDetailedState> emit,
   ) async {
     try {
-      emit(GroupDetailedLoading(groupId: event.groupId));
-      print(event.groupId);
+      emit(GroupDetailedLoading());
+      print(event.groupId.toString() + 'dsadas');
       final response = await repo.fetch(event.groupId);
-      print(response);
       studentList.clear();
       studentList.addAll(response);
 
-      emit(GroupDetailedData(listStudents: studentList, groupId: event.groupId));
+      emit(GroupDetailedData(
+        listStudents: studentList,
+      ));
     } catch (e) {
-
-      emit(
-          GroupDetailedError(error: 'something error', groupId: event.groupId));
+      emit(GroupDetailedError(
+        error: 'something error',
+      ));
     }
   }
 

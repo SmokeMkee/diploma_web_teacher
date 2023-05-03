@@ -105,6 +105,12 @@ class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    CoursesDetailedLessonRoute.name: (routeData) {
+      return AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const CoursesDetailedLesson(),
+      );
+    },
     TGroupsRoute.name: (routeData) {
       return AdaptivePage<dynamic>(
         routeData: routeData,
@@ -183,6 +189,11 @@ class _$AppRouter extends RootStackRouter {
                 RouteConfig(
                   TGroupDetailedRoute.name,
                   path: 't-group-detailed',
+                  parent: TCoursesRouter.name,
+                ),
+                RouteConfig(
+                  CoursesDetailedLessonRoute.name,
+                  path: 'courses-detailed-lesson',
                   parent: TCoursesRouter.name,
                 ),
               ],
@@ -471,6 +482,18 @@ class TGroupDetailedRouteArgs {
   String toString() {
     return 'TGroupDetailedRouteArgs{key: $key, group: $group}';
   }
+}
+
+/// generated route for
+/// [CoursesDetailedLesson]
+class CoursesDetailedLessonRoute extends PageRouteInfo<void> {
+  const CoursesDetailedLessonRoute()
+      : super(
+          CoursesDetailedLessonRoute.name,
+          path: 'courses-detailed-lesson',
+        );
+
+  static const String name = 'CoursesDetailedLessonRoute';
 }
 
 /// generated route for

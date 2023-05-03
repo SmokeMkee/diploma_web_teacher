@@ -24,5 +24,6 @@ class RepoCourses {
       "color" : color,
       "categoryId" : categoryId,
     });
+    print(result);
   }
 }

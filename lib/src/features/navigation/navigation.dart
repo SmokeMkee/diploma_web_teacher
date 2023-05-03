@@ -44,8 +44,8 @@ class Navigation extends StatelessWidget {
               label: NavBarLabel(isActive: current == 2, label: S.of(context).groups),
               icon: _NavBarSvg(
                 isActive: current == 2,
-                activeIconPath: AppAssets.svg.coursesBold,
-                inactiveIconPath: AppAssets.svg.courses,
+                activeIconPath: AppAssets.svg.groupsBold,
+                inactiveIconPath: AppAssets.svg.groups,
               ),
             ),
             NavigationRailDestination(

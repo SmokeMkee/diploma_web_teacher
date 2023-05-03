@@ -8,9 +8,12 @@ class FetchDataEvent extends GroupDetailedEvent {
 }
 
 class AddStudentEvent extends GroupDetailedEvent {
-  AddStudentEvent({required this.email});
+  AddStudentEvent({required this.email , required this.groupId});
   final String email;
+  final int groupId;
 }
 
 class DeleteStudentEvent extends GroupDetailedEvent {
+  DeleteStudentEvent({required this.groupId});
+  final int groupId;
 }

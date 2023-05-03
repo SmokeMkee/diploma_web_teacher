@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../auth/sign_in/ui/authorization_screen.dart';
 import '../../settings/ui/settings_screen.dart';
+import '../../t_courses/courses_detailed_lesson/ui/lesson.dart';
 import '../../t_courses/t_courses_detailed/ui/t_courses_detailed.dart';
 import '../../t_courses/ui/t_courses.dart';
 import '../../t_gradebook/t_gradebook_detailed/ui/t_gradebook_detailed.dart';
@@ -43,7 +44,9 @@ part 'app_router.gr.dart';
             AutoRoute(
               page: TCoursesDetailed,
             ),
-            AutoRoute(page: TGroupDetailed)
+            AutoRoute(page: TGroupDetailed),
+            AutoRoute(page: CoursesDetailedLesson),
+
           ],
         ),
         AutoRoute(

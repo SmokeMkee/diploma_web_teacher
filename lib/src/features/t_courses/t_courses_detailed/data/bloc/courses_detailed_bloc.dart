@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../dto/groups.dart';
 import '../dto/unit.dart';
 import '../repo/repo_courses.dart';
 
@@ -13,11 +14,10 @@ part 'courses_detailed_state.dart';
 class CoursesDetailedBloc
     extends Bloc<CoursesDetailedEvent, CoursesDetailedState> {
   CoursesDetailedBloc({required this.repo}) : super(CoursesDetailedInitial()) {
-    on<FetchUnits>(fetch, transformer: droppable());
-    on<AddNewUnit>(addNewUnit, transformer: droppable());
+    on<FetchUnits>(fetch, );
+    on<AddNewUnit>(addNewUnit, );
+    on<FetchGroupsInCourse>(fetchGroupsInCourse, );
   }
-
-  int groupId = 0;
 
   Future<void> fetch(
     FetchUnits event,
@@ -26,7 +26,6 @@ class CoursesDetailedBloc
     try {
       emit(CoursesDetailedLoading());
       final result = await repo.fetch(event.unitId);
-      groupId = event.unitId;
       emit(
         CoursesDetailedData(
           list: result,
@@ -37,17 +36,34 @@ class CoursesDetailedBloc
     }
   }
 
+  Future<void> fetchGroupsInCourse(
+    FetchGroupsInCourse event,
+    Emitter<CoursesDetailedState> emit,
+  ) async {
+    try {
+      emit(CoursesDetailedLoading());
+      final result = await repo.fetchGroups(event.courseId);
+      emit(
+        CoursesDetailedGroupsData(
+          list: result,
+        ),
+      );
+    } catch (e) {
+      emit(CoursesDetailedError(message: 'something error'));
+    }
+  }
+
   Future<void> addNewUnit(
     AddNewUnit event,
     Emitter<CoursesDetailedState> emit,
   ) async {
     try {
       emit(CoursesDetailedLoading());
-      print(groupId);
       final result = await repo.addNewUnit(
         name: event.name,
-        id: groupId,
+        id: event.id,
       );
+      add(FetchUnits(unitId: event.id));
     } catch (e) {
       //emit(CoursesError(message: 'something error'));
     }

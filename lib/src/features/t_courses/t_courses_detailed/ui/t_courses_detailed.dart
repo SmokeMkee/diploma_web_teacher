@@ -13,6 +13,7 @@ import '../../../../widgets/course_container.dart';
 import '../../../../widgets/header_widget.dart';
 import '../../../navigation/app_router/app_router.dart';
 import '../../../theme_manager/theme_manager.dart';
+import '../data/bloc/courses_detailed_bloc.dart';
 
 class TCoursesDetailed extends StatelessWidget {
   const TCoursesDetailed({Key? key, required this.groupId}) : super(key: key);
@@ -117,7 +118,7 @@ class TCoursesDetailed extends StatelessWidget {
                     TCoursesDetailedUnits(
                       groupId: groupId,
                     ),
-                    const TCoursesDetailedListOfStudents(),
+                     TCoursesDetailedListOfStudents(courseId: groupId,),
                   ],
                 ),
               )
@@ -129,24 +130,55 @@ class TCoursesDetailed extends StatelessWidget {
   }
 }
 
-class TCoursesDetailedListOfStudents extends StatelessWidget {
-  const TCoursesDetailedListOfStudents({Key? key}) : super(key: key);
+class TCoursesDetailedListOfStudents extends StatefulWidget {
+  const TCoursesDetailedListOfStudents({Key? key, required this.courseId}) : super(key: key);
+  final int courseId;
+  @override
+  State<TCoursesDetailedListOfStudents> createState() => _TCoursesDetailedListOfStudentsState();
+}
 
+class _TCoursesDetailedListOfStudentsState extends State<TCoursesDetailedListOfStudents> {
+  @override
+  void didChangeDependencies() {
+    context.read<CoursesDetailedBloc>().add(FetchGroupsInCourse(courseId: widget.courseId));
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 1,
-      itemBuilder: (context, int index) {
-        return GestureDetector(
-          onTap: () {
-            context.router.push(TGroupDetailedRoute(
-                group: GroupDTO(
-                    groupName: 'ITIS-1914', id: 11214852, userId: 21321)));
-          },
-          child: const TGroupCoursesCard(
-            nameGroup: 'ITIS-1914',
-          ),
-        );
+    return BlocBuilder<CoursesDetailedBloc, CoursesDetailedState>(
+      builder: (context, state) {
+        if (state is CoursesDetailedLoading) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (state is CoursesDetailedGroupsData) {
+          return ListView.builder(
+            itemCount: state.list.length,
+            itemBuilder: (context, int index) {
+              return GestureDetector(
+                onTap: () {
+                  context.router.push(
+                    TGroupDetailedRoute(
+                      group: GroupDTO(
+                        groupName: state.list[index].groupName ?? '',
+                        id: state.list[index].groupId ?? 0,
+                        userId: state.list[index].userId ?? 0,
+                      ),
+                    ),
+                  );
+                },
+                child: TGroupCoursesCard(
+                  nameGroup: state.list[index].groupName ?? '',
+                ),
+              );
+            },
+          );
+        }
+        if (state is CoursesDetailedError) {
+          return const Center(
+            child: Text('something Error'),
+          );
+        }
+        return const SizedBox.shrink();
       },
     );
   }

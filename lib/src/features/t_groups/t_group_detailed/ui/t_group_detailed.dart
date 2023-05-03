@@ -66,17 +66,17 @@ class _TGroupDetailedState extends State<TGroupDetailed> {
                     ),
                     const SizedBox(width: 34),
                     CourseContainer(
-                      text:
-                          widget.group.groupName[0],
+                      text: widget.group.groupName[0],
                     ),
                     const SizedBox(width: 25),
-                    Text(widget.group.groupName, style: theme.textStyles.s18w500)
+                    Text(widget.group.groupName,
+                        style: theme.textStyles.s18w500)
                   ],
                 ),
                 AppElevatedIconButton(
                   text: 'Add students',
                   onTap: () {
-                    showAlertDialogAddStudent(context);
+                    showAlertDialogAddStudent(context, widget.group.id );
                   },
                 ),
               ],
@@ -177,7 +177,7 @@ class _GroupTableWidgetState extends State<GroupTableWidget> {
                         onPressed: () {
                           context
                               .read<GroupDetailedBloc>()
-                              .add(DeleteStudentEvent());
+                              .add(DeleteStudentEvent(groupId: widget.data.first.groupId ?? 0));
                         },
                         child: Text(
                           'Delete selected',
@@ -261,7 +261,7 @@ class _GroupTableWidgetState extends State<GroupTableWidget> {
   }
 }
 
-void showAlertDialogAddStudent(BuildContext context) {
+void showAlertDialogAddStudent(BuildContext context, int groupId) {
   showDialog<String>(
     context: context,
     builder: (BuildContext context) => AlertDialog(
@@ -273,14 +273,17 @@ void showAlertDialogAddStudent(BuildContext context) {
       title: const Text('Add student by email'),
       content: SizedBox(
         width: MediaQuery.of(context).size.width / 3.5,
-        child: const AddStudentBody(),
+        child: AddStudentBody(
+          groupId: groupId,
+        ),
       ),
     ),
   );
 }
 
 class AddStudentBody extends StatefulWidget {
-  const AddStudentBody({Key? key}) : super(key: key);
+  const AddStudentBody({Key? key, required this.groupId}) : super(key: key);
+  final int groupId;
 
   @override
   State<AddStudentBody> createState() => _AddStudentBodyState();
@@ -329,7 +332,10 @@ class _AddStudentBodyState extends State<AddStudentBody> {
                 title: 'Save',
                 onTap: () {
                   context.read<GroupDetailedBloc>().add(
-                        AddStudentEvent(email: controller.text),
+                        AddStudentEvent(
+                          email: controller.text,
+                          groupId: widget.groupId,
+                        ),
                       );
                   context.router.pop();
                 },

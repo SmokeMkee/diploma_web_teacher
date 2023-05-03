@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import '../../../../../../api/api.dart';
+import '../dto/groups.dart';
 import '../dto/unit.dart';
 
 class RepoCoursesUnits {
@@ -13,7 +14,16 @@ class RepoCoursesUnits {
         await api.dio.get('/teacher-course/get-unit-section', queryParameters: {
       "unitId": id,
     });
+    print(id);
     List<Unit> listUnits = unitFromJson(json.encode(result.data));
+    return listUnits;
+  }
+  Future<List<Groups>> fetchGroups(int id) async {
+    final result =
+        await api.dio.get('/teacher/get-list-of-groups-in-course', queryParameters: {
+      "courseId": id,
+    });
+    List<Groups> listUnits = groupsFromJson(json.encode(result.data));
     return listUnits;
   }
 
@@ -21,11 +31,11 @@ class RepoCoursesUnits {
     required String name,
     required int id,
   }) async {
-    print(id);
     final result = await api.dio
         .post('/teacher-course/create-unit-section', queryParameters: {
       "unitId": id,
       "title" : name,
     });
+    print(id);
   }
 }

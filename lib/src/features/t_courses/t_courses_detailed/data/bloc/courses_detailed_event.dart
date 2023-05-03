@@ -7,6 +7,11 @@ class FetchUnits extends CoursesDetailedEvent {
 
   final int unitId;
 }
+class FetchGroupsInCourse extends CoursesDetailedEvent {
+  FetchGroupsInCourse({required this.courseId});
+
+  final int courseId;
+}
 
 class AddNewUnit extends CoursesDetailedEvent {
   AddNewUnit({

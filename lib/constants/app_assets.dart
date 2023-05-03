@@ -7,6 +7,10 @@ class _Images {
   const _Images();
 
   final String logo = 'assets/images/logo.png';
+  final String dividingLine = 'assets/images/dividing_line.png';
+  final String pdfAndOther = 'assets/images/pdf_and_other.png';
+  final String pictures = 'assets/images/pictures.png';
+  final String text = 'assets/images/text.png';
 }
 
 class _Svg {
@@ -24,7 +28,8 @@ class _Svg {
   final String schedule = 'assets/svg/schedule.svg';
   final String saved = 'assets/svg/saved.svg';
   final String settings = 'assets/svg/settings.svg';
-
+  final String groups = 'assets/svg/groups.svg';
+  final String groupsBold = 'assets/svg/groups_bold.svg';
   final String coursesBold = 'assets/svg/courses_bold.svg';
   final String assignmentsBold = 'assets/svg/assignment_bold.svg';
   final String gradeBookBold = 'assets/svg/grade_book_bold.svg';
