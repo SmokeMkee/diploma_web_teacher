@@ -5,6 +5,7 @@ import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
 import '../../../widgets/course_container.dart';
 import '../../../widgets/header_widget.dart';
+import '../../localization/generated/l10n.dart';
 import '../../theme_manager/theme_manager.dart';
 
 class TSchedule extends StatelessWidget {
@@ -37,27 +38,27 @@ class TSchedule extends StatelessWidget {
                 indicatorColor: theme.colors.accent,
                 labelColor: theme.colors.accent,
                 labelStyle: theme.textStyles.s15w500.copyWith(color: theme.colors.accent),
-                tabs: const [
+                tabs: [
                   Tab(
-                    text: 'Monday',
+                    text: S.of(context).monday,
                   ),
                   Tab(
-                    text: 'Tuesday',
+                    text: S.of(context).tuesday,
                   ),
                   Tab(
-                    text: 'Wednesday',
+                    text: S.of(context).wednesday,
                   ),
                   Tab(
-                    text: 'Thursday',
+                    text: S.of(context).thursday,
                   ),
                   Tab(
-                    text: 'Friday',
+                    text: S.of(context).friday,
                   ),
                   Tab(
-                    text: 'Saturday',
+                    text: S.of(context).saturday,
                   ),
                   Tab(
-                    text: 'Sunday',
+                    text: S.of(context).sunday,
                   ),
                 ],
               ),
@@ -165,7 +166,7 @@ class ScheduleCard extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                                Text(
-                                'General English',
+                                S.of(context).generalEnglish,
                                 style: theme.textStyles.s15w500,
                               ),
                               const SizedBox(width: 10),
@@ -176,7 +177,7 @@ class ScheduleCard extends StatelessWidget {
                                 ),
                                 padding: const EdgeInsets.symmetric(vertical: 2.5, horizontal: 10),
                                 child: Text(
-                                  'Lecture',
+                                  S.of(context).lecture,
                                   style: theme.textStyles.s14w500.copyWith(color: theme.colors.subtitle),
                                 ),
                               )

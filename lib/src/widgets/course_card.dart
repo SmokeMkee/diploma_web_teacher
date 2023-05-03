@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../../constants/app_assets.dart';
 import '../../../../../../constants/app_colors.dart';
 import '../../../../../../constants/app_styles.dart';
+import '../features/localization/generated/l10n.dart';
 import '../features/t_courses/data/dto/courses.dart';
 import '../features/theme_manager/theme_manager.dart';
 import 'course_container.dart';
@@ -39,12 +40,12 @@ class CourseCard extends StatelessWidget {
               ),
               const SizedBox(height: 23),
               Text(
-                course.courseName!.isNotEmpty ? course.courseName! : 'Course',
+                course.courseName!.isNotEmpty ? course.courseName! : S.of(context).course,
                 style: theme.textStyles.s18w500,
               ),
               const SizedBox(height: 9),
               Text(
-                'Teacher: Alan Alexander',
+                S.of(context).teacherAlanAlexander,
                 style: theme.textStyles.s14w400,
               ),
             ],

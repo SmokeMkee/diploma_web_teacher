@@ -7,6 +7,7 @@ import '../../../../../../constants/app_colors.dart';
 import '../../../../../../constants/app_styles.dart';
 import '../../../../widgets/app_drop_down_button.dart';
 import '../../../../widgets/app_text_form_field.dart';
+import '../../../localization/generated/l10n.dart';
 import '../../../theme_manager/theme_manager.dart';
 import '../../data/bloc/profile_bloc.dart';
 import '../../data/dto/profile_model.dart';
@@ -63,11 +64,11 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
       children: [
         const SizedBox(height: 54),
          Text(
-          'User information',
+          S.of(context).userInformation,
           style: theme.textStyles.s15w500,
         ),
         Text(
-          'Here you can manage your account',
+          S.of(context).hereYouCanManageYourAccount,
           style: theme.textStyles.s15w500.copyWith(
             color: theme.colors.gray600,
           ),
@@ -77,8 +78,8 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
           children: [
             Expanded(
               child: ProfileTile(
-                label: 'First name',
-                hintText: 'Enter your first name',
+                label: S.of(context).firstName,
+                hintText: S.of(context).enterYourFirstName,
                 controller: firstName,
               ),
             ),
@@ -87,8 +88,8 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
             ),
             Expanded(
               child: ProfileTile(
-                label: 'Second name',
-                hintText: 'Enter your Second name',
+                label: S.of(context).secondName,
+                hintText: S.of(context).enterYourSecondName,
                 controller: secondName,
               ),
             ),
@@ -96,8 +97,8 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
         ),
         const SizedBox(height: 24),
         ProfileTile(
-          label: 'Patronymic name',
-          hintText: 'Enter your patronymic name',
+          label: S.of(context).patronymicName,
+          hintText: S.of(context).enterYourPatronymicName,
           controller: patronymicName,
         ),
         const SizedBox(height: 24),
@@ -106,7 +107,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
           children: [
             Expanded(
               child: ProfileTile(
-                label: 'Date of Birth',
+                label: S.of(context).dateOfBirth,
                 hintText: 'XX / XX / XXXX',
                 controller: dateOfBirth,
               ),
@@ -126,8 +127,8 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
         ),
         const SizedBox(height: 24),
         ProfileTile(
-          label: 'Email address',
-          hintText: 'Enter your email address',
+          label: S.of(context).emailAddress,
+          hintText: S.of(context).enterYourEmailAddress,
           suffixIcon: Padding(
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: SvgPicture.asset(
@@ -139,9 +140,9 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
         ),
         const SizedBox(height: 24),
         ProfileTile(
-          label: 'Phone number',
+          label: S.of(context).phoneNumber,
           controller: phone,
-          hintText: 'Enter your phone number',
+          hintText: S.of(context).enterYourPhoneNumber,
           suffixIcon: Padding(
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: SvgPicture.asset(
@@ -213,13 +214,13 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
         AppTextFormField(
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Error text';
+              return S.of(context).errorText;
             } else {
               return null;
             }
           },
           textEditingController: street,
-          hintText: 'Street',
+          hintText: S.of(context).street,
           hintStyle: theme.textStyles.s15w400.copyWith(color: theme.colors.gray400),
         ),
         const SizedBox(height: 40),
@@ -243,8 +244,8 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                           phone: phone.text,
                           street: street.text,
                           birthdate: dateOfBirth.text,
-                          city: 'Almaty',
-                          country: 'Almaty',
+                          city: S.of(context).almaty,
+                          country: S.of(context).almaty,
                         ),
                       ),
                     );
@@ -252,7 +253,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 child: Text(
-                  'Save changes',
+                  S.of(context).saveChanges,
                   style: theme.textStyles.s15w500.copyWith(color: theme.colors.white),
                 ),
               ),
@@ -269,7 +270,7 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
               onPressed: () {},
               child:  Padding(
                 padding: const EdgeInsets.symmetric(vertical: 14),
-                child: Text('Delete', style: theme.textStyles.s15w500),
+                child: Text(S.of(context).delete, style: theme.textStyles.s15w500),
               ),
             ),
           ],
@@ -309,7 +310,7 @@ class ProfileTile extends StatelessWidget {
           textEditingController: controller,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Error text';
+              return S.of(context).errorText;
             } else {
               return null;
             }
@@ -342,18 +343,18 @@ class FullNameWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                    Text(
-                    'First name',
+                    S.of(context).firstName,
                     style: theme.textStyles.s15w400,
                   ),
                   AppTextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Error text';
+                        return S.of(context).errorText;
                       } else {
                         return null;
                       }
                     },
-                    hintText: 'Enter your first name',
+                    hintText: S.of(context).enterYourFirstName,
                     hintStyle:
                         theme.textStyles.s15w400.copyWith(color: theme.colors.gray400),
                   ),
@@ -367,18 +368,18 @@ class FullNameWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                    Text(
-                    'Second name',
+                    S.of(context).secondName,
                     style: theme.textStyles.s15w400,
                   ),
                   AppTextFormField(
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Error text';
+                        return S.of(context).errorText;
                       } else {
                         return null;
                       }
                     },
-                    hintText: 'Enter your second name',
+                    hintText: S.of(context).enterYourSecondName,
                     hintStyle:
                         theme.textStyles.s15w400.copyWith(color: theme.colors.gray400),
                   ),
@@ -389,18 +390,18 @@ class FullNameWidget extends StatelessWidget {
         ),
         const SizedBox(height: 24),
          Text(
-          'Patronymic name',
+          S.of(context).patronymicName,
           style: theme.textStyles.s15w400,
         ),
         AppTextFormField(
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'Error text';
+              return S.of(context).errorText;
             } else {
               return null;
             }
           },
-          hintText: 'Enter your patronymic name',
+          hintText: S.of(context).enterYourPatronymicName,
           hintStyle: theme.textStyles.s15w400.copyWith(color: theme.colors.gray400),
         ),
       ],

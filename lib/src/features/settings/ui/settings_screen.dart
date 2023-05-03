@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
 import '../../../widgets/header_widget.dart';
+import '../../localization/generated/l10n.dart';
 import '../../theme_manager/theme_manager.dart';
 import '../settings_additional/additional.dart';
 import '../settings_notifications/notifications.dart';

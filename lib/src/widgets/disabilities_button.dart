@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import '../../../constants/app_assets.dart';
 import '../../../constants/app_colors.dart';
 import '../../../constants/app_styles.dart';
+import '../features/localization/generated/l10n.dart';
 import '../features/theme_manager/theme_manager.dart';
 
 
@@ -29,7 +30,7 @@ class DisabilitiesButton extends StatelessWidget {
           ),
           const SizedBox(width: 16),
            Text(
-            'Version for people with disabilities',
+            S.of(context).versionForPeopleWithDisabilities,
             style: theme.textStyles.s14w500,
           )
         ],

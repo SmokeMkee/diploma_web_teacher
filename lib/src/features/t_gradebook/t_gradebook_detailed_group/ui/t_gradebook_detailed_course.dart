@@ -8,6 +8,7 @@ import '../../../../widgets/app_back_button.dart';
 import '../../../../widgets/app_drop_down_button.dart';
 import '../../../../widgets/course_container.dart';
 import '../../../../widgets/header_widget.dart';
+import '../../../localization/generated/l10n.dart';
 import '../../../navigation/app_router/app_router.dart';
 import '../../../theme_manager/theme_manager.dart';
 
@@ -23,10 +24,10 @@ class TGradeBookDetailedGroup extends StatelessWidget {
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: const PreferredSize(
+          appBar: PreferredSize(
             preferredSize: Size(double.infinity, 200),
             child: HeaderWidget(
-              title: 'gradebook > general english',
+              title: S.of(context).gradeBookGeneralEnglish,
               withDisabilities: false,
             ),
           ),
@@ -55,7 +56,7 @@ class TGradeBookDetailedGroup extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                            Text(
-                            'General English',
+                            S.of(context).generalEnglish,
                             style: theme.textStyles.s15w500,
                           ),
                           Text(
@@ -69,7 +70,7 @@ class TGradeBookDetailedGroup extends StatelessWidget {
                     ],
                   ),
                    Text(
-                    'Attendance: 89.34%',
+                    S.of(context).attendance8934,
                     style: theme.textStyles.s15w500,
                   )
                 ],
@@ -83,12 +84,12 @@ class TGradeBookDetailedGroup extends StatelessWidget {
                 indicatorColor: theme.colors.accent,
                 labelColor: theme.colors.accent,
                 labelStyle: theme.textStyles.s15w500.copyWith(color: theme.colors.accent),
-                tabs: const [
+                tabs: [
                   Tab(
-                    text: 'Grades',
+                    text: S.of(context).grades,
                   ),
                   Tab(
-                    text: 'Attendance',
+                    text: S.of(context).attendance,
                   ),
                 ],
               ),
@@ -169,39 +170,39 @@ class GradesTableWidget extends StatelessWidget {
       child: TableBody(
         data: [
           TableInfo(
-            surname: 'Robert ',
-            firstName: 'Perry',
-            status: 'Finished',
-            grade: 'Checked',
-            nameLetters: 'RP',
+            surname: S.of(context).robert,
+            firstName: S.of(context).perry,
+            status: S.of(context).finished,
+            grade: S.of(context).checked,
+            nameLetters: S.of(context).pr,
           ),
           TableInfo(
-            surname: 'Paul  ',
-            firstName: 'Wilson',
-            status: 'Finished',
-            grade: 'Checked',
-            nameLetters: 'PW',
+            surname: S.of(context).paul,
+            firstName: S.of(context).wilson,
+            status: S.of(context).finished,
+            grade: S.of(context).checked,
+            nameLetters: S.of(context).pw,
           ),
           TableInfo(
-            surname: 'Michael  ',
-            firstName: 'Henry',
-            status: 'Finished',
-            grade: 'Checked',
-            nameLetters: 'MH',
+            surname: S.of(context).michael,
+            firstName: S.of(context).henry,
+            status: S.of(context).finished,
+            grade: S.of(context).checked,
+            nameLetters: S.of(context).mh,
           ),
           TableInfo(
-            surname: 'Timur ',
-            firstName: 'Merekeyev',
-            status: 'Finished',
+            surname: S.of(context).timur,
+            firstName: S.of(context).merekeyev,
+            status: S.of(context).finished,
             grade: '',
-            nameLetters: 'TM',
+            nameLetters: S.of(context).tm,
           ),
           TableInfo(
-            surname: 'Bayan ',
-            firstName: 'Buitek',
-            status: 'Finished',
+            surname: S.of(context).bayan,
+            firstName: S.of(context).buitek,
+            status: S.of(context).finished,
             grade: '',
-            nameLetters: 'BB',
+            nameLetters: S.of(context).bb,
           ),
 
         ],
@@ -250,7 +251,7 @@ class BodyTableGradeText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
         padding: const EdgeInsets.fromLTRB(42, 13, 22, 13),
-        child:text == 'Checked' ?   Text(
+        child:text == S.of(context).checked ?   Text(
           text,
           style: AppStyles.s15w500.copyWith(color: AppColors.success),
         ) : const SizedBox.shrink()
@@ -291,13 +292,13 @@ class TableBody extends StatelessWidget {
               4: FlexColumnWidth(3),
             },
             children: [
-              const TableRow(
+              TableRow(
                 children: [
-                  HeaderTableText(text: ''),
-                  HeaderTableText(text: 'Surname'),
-                  HeaderTableText(text: 'First name'),
-                  HeaderTableText(text: 'Status'),
-                  HeaderTableText(text: 'Grade / 100'),
+                  const HeaderTableText(text: ''),
+                  HeaderTableText(text: S.of(context).secondName),
+                  HeaderTableText(text: S.of(context).firstName),
+                  HeaderTableText(text: S.of(context).status),
+                  HeaderTableText(text: S.of(context).grade100),
                 ],
               ),
               ...data.map(
@@ -341,7 +342,7 @@ class BodyTableStatus extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(42, 13, 22, 13),
       child: Text(
         status,
-        style: AppStyles.s15w500.copyWith(color: status == 'Finished' ? AppColors.accent : AppColors.gray600),
+        style: AppStyles.s15w500.copyWith(color: status == S.of(context).finished ? AppColors.accent : AppColors.gray600),
       ),
     );
   }

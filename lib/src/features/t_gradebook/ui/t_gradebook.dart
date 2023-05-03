@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
 import '../../../widgets/header_widget.dart';
+import '../../localization/generated/l10n.dart';
 import '../../navigation/app_router/app_router.dart';
 
 class TGradeBook extends StatelessWidget {
@@ -20,10 +21,10 @@ class TGradeBook extends StatelessWidget {
       child: DefaultTabController(
         length: 2,
         child: Scaffold(
-          appBar: const PreferredSize(
+          appBar: PreferredSize(
             preferredSize: Size(double.infinity, 200),
             child: HeaderWidget(
-              title: 'gradebook',
+              title: S.of(context).gradeBook,
               withDisabilities: false,
             ),
           ),
@@ -42,12 +43,12 @@ class TGradeBook extends StatelessWidget {
                   labelColor: theme.colors.accent,
                   labelStyle:
                       theme.textStyles.s15w500.copyWith(color: theme.colors.accent),
-                  tabs: const [
+                  tabs: [
                     Tab(
-                      text: 'All courses',
+                      text: S.of(context).allCourses,
                     ),
                     Tab(
-                      text: 'Second courses',
+                      text: S.of(context).secondCourses,
                     ),
                   ],
                 ),

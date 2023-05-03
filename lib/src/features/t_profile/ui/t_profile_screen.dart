@@ -10,6 +10,7 @@ import '../../../../../constants/app_styles.dart';
 import '../../../widgets/app_border_button.dart';
 import '../../../widgets/app_eleavted_button.dart';
 import '../../../widgets/header_widget.dart';
+import '../../localization/generated/l10n.dart';
 import '../../theme_manager/src/theme_light.dart';
 import '../../theme_manager/theme_manager.dart';
 import '../data/bloc/profile_bloc.dart';
@@ -36,10 +37,10 @@ class _TProfileScreenState extends State<TProfileScreen> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: Scaffold(
-        appBar: const PreferredSize(
+        appBar: PreferredSize(
           preferredSize: Size(double.infinity, 200),
           child: HeaderWidget(
-            title: 'Profile',
+            title: S.of(context).profile,
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -49,8 +50,8 @@ class _TProfileScreenState extends State<TProfileScreen> {
               return const Center(child: CircularProgressIndicator());
             }
             if (state is ProfileError) {
-              return const Center(
-                child: Text('something error'),
+              return Center(
+                child: Text(S.of(context).somethingError),
               );
             }
             if (state is ProfileData) {
@@ -138,7 +139,7 @@ class PhotoWidget extends StatelessWidget {
             ),
             const SizedBox(height: 6),
             Text(
-              'Teacher',
+              S.of(context).teacher,
               style: theme.textStyles.s15w400
                   .copyWith(color: theme.colors.gray600),
             ),
@@ -147,7 +148,7 @@ class PhotoWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: AppElevatedButton(
-                    title: 'Upload photo',
+                    title: S.of(context).uploadPhoto,
                     onTap: () {},
                   ),
                 ),
@@ -158,7 +159,7 @@ class PhotoWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: AppBorderButton(
-                    title: 'Delete',
+                    title: S.of(context).delete,
                     onTap: () {},
                   ),
                 ),
@@ -182,12 +183,12 @@ class ResumeWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Resume',
+          S.of(context).resume,
           style: theme.textStyles.s17w500,
         ),
         const SizedBox(height: 9),
         Text(
-          'Here you can create your resume',
+          S.of(context).hereYouCanCreateYourResume,
           style: theme.textStyles.s15w400.copyWith(color: theme.colors.gray400),
         ),
         const SizedBox(height: 24),

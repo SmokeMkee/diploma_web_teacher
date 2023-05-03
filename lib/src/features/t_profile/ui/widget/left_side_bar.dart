@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../../../../constants/app_colors.dart';
 import '../../../../../constants/app_styles.dart';
+import '../../../localization/generated/l10n.dart';
 import '../../../navigation/app_router/app_router.dart';
 import '../../../theme_manager/theme_manager.dart';
 
@@ -34,12 +35,12 @@ class ResumeWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
          Text(
-          'Resume',
+          S.of(context).resume,
           style: theme.textStyles.s17w500,
         ),
         const SizedBox(height: 9),
         Text(
-          'Here you can create your resume',
+          S.of(context).hereYouCanCreateYourResume,
           style: theme.textStyles.s15w400.copyWith(color: theme.colors.gray400),
         ),
         const SizedBox(height: 24),
@@ -69,7 +70,7 @@ class PhotoWidget extends StatelessWidget {
             ),
             const SizedBox(height: 20),
              Text(
-              'Mary Jane',
+              S.of(context).maryJane,
               style: theme.textStyles.s18w500,
             ),
             const SizedBox(height: 6),
@@ -82,7 +83,7 @@ class PhotoWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: AppElevatedButton(
-                    title: 'Upload photo',
+                    title: S.of(context).uploadPhoto,
                     onTap: () {},
                   ),
                 ),
@@ -93,7 +94,7 @@ class PhotoWidget extends StatelessWidget {
               children: [
                 Expanded(
                   child: AppBorderButton(
-                    title: 'Delete',
+                    title: S.of(context).delete,
                     onTap: () {},
                   ),
                 ),
