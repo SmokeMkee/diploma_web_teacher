@@ -32,8 +32,6 @@ class SearchWidget extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 23),
-        const AppFilterButton(),
       ],
     );
   }

@@ -9,16 +9,12 @@ import '../features/theme_manager/theme_manager.dart';
 
 
 
-class AppDropDownButton extends StatefulWidget {
-  const AppDropDownButton({Key? key, required this.items, required this.initial}) : super(key: key);
+class AppDropDownButton extends StatelessWidget {
+  const AppDropDownButton({Key? key, required this.items, required this.initial, required this.onChanged}) : super(key: key);
   final List<DropdownMenuItem> items;
-  final String initial;
-  @override
-  State<AppDropDownButton> createState() => _AppDropDownButtonState();
-}
+  final dynamic initial;
+  final Function(dynamic) onChanged;
 
-class _AppDropDownButtonState extends State<AppDropDownButton> {
-  String? categoryValue;
 
   @override
   Widget build(BuildContext context) {
@@ -38,20 +34,14 @@ class _AppDropDownButtonState extends State<AppDropDownButton> {
           ),
           isExpanded: true,
           hint: Text(
-            widget.initial,
+            initial,
             style: theme.textStyles.s15w400.copyWith(
               color: theme.colors.gray400,
             ),
           ),
-          value: categoryValue,
-          items: widget.items,
-          onChanged: (val) {
-            setState(
-              () {
-                categoryValue = val.toString();
-              },
-            );
-          },
+          value: initial,
+          items: items,
+          onChanged: onChanged,
         ),
       ),
     );

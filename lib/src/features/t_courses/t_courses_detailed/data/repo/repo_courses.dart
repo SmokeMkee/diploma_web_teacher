@@ -11,8 +11,8 @@ class RepoCoursesUnits {
 
   Future<List<Unit>> fetch(int id) async {
     final result =
-        await api.dio.get('/teacher-course/get-unit-section', queryParameters: {
-      "unitId": id,
+        await api.dio.get('/teacher/get-unit-of-course', queryParameters: {
+      "courseId": id,
     });
     print(id);
     List<Unit> listUnits = unitFromJson(json.encode(result.data));

@@ -57,18 +57,6 @@ class _TProfileScreenState extends State<TProfileScreen> {
             if (state is ProfileData) {
               return Row(
                 children: [
-                  ElevatedButton(
-                      onPressed: () {
-                        InclusiveTechnologies.textScale = 2;
-                        setState(() {
-
-                        });
-                        print(theme.textStyles.s15w500);
-                      },
-                      child: Text(
-                        'sd',
-                        style: theme.textStyles.s15w500,
-                      )),
                   Expanded(
                     flex: 4,
                     child: SingleChildScrollView(

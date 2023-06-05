@@ -18,67 +18,55 @@ class TGradeBook extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
-      child: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size(double.infinity, 200),
-            child: HeaderWidget(
-              title: S.of(context).gradeBook,
-              withDisabilities: false,
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size(double.infinity, 200),
+          child: HeaderWidget(
+            title: S.of(context).gradeBook,
+            withDisabilities: false,
+          ),
+        ),
+        backgroundColor: theme.colors.background,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 34),
+            // SizedBox(
+            //   width: 340,
+            //   child: TabBar(
+            //     unselectedLabelColor: theme.colors.gray600,
+            //     indicatorWeight: 6,
+            //     indicatorSize: TabBarIndicatorSize.label,
+            //     indicatorColor: theme.colors.accent,
+            //     labelColor: theme.colors.accent,
+            //     labelStyle:
+            //         theme.textStyles.s15w500.copyWith(color: theme.colors.accent),
+            //     tabs: [
+            //       Tab(
+            //         text: S.of(context).allCourses,
+            //       ),
+            //       Tab(
+            //         text: S.of(context).secondCourses,
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: (context, int index) {
+                  return GestureDetector(
+                      onTap: () {
+                        context.router.push(
+                          const TGradeBookDetailedRoute(),
+                        );
+                      },
+                      child: const GradeBookCard());
+                },
+                itemCount: 3,
+              ),
             ),
-          ),
-          backgroundColor:theme.colors.background,
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 34),
-              SizedBox(
-                width: 340,
-                child: TabBar(
-                  unselectedLabelColor: theme.colors.gray600,
-                  indicatorWeight: 6,
-                  indicatorSize: TabBarIndicatorSize.label,
-                  indicatorColor: theme.colors.accent,
-                  labelColor: theme.colors.accent,
-                  labelStyle:
-                      theme.textStyles.s15w500.copyWith(color: theme.colors.accent),
-                  tabs: [
-                    Tab(
-                      text: S.of(context).allCourses,
-                    ),
-                    Tab(
-                      text: S.of(context).secondCourses,
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    ListView.builder(
-                      itemBuilder: (context, int index) {
-                        return GestureDetector(
-                            onTap: () {
-                              context.router
-                                  .push(const TGradeBookDetailedRoute());
-                            },
-                            child: const GradeBookCard());
-                      },
-                      itemCount: 3,
-                    ),
-                    ListView.builder(
-                      itemBuilder: (context, int index) {
-                        return GestureDetector(child: const GradeBookCard());
-                      },
-                      itemCount: 3,
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 35),
-            ],
-          ),
+            const SizedBox(height: 35),
+          ],
         ),
       ),
     );

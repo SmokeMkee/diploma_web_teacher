@@ -1239,6 +1239,66 @@ class S {
       args: [],
     );
   }
+
+  /// `Дальтонизм`
+  String get colorBlindness {
+    return Intl.message(
+      'Дальтонизм',
+      name: 'colorBlindness',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `размер текста`
+  String get textSize {
+    return Intl.message(
+      'размер текста',
+      name: 'textSize',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `высота текста`
+  String get textHeight {
+    return Intl.message(
+      'высота текста',
+      name: 'textHeight',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Пробел линии`
+  String get lineSpace {
+    return Intl.message(
+      'Пробел линии',
+      name: 'lineSpace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Изменить цвет текста`
+  String get changeTextColor {
+    return Intl.message(
+      'Изменить цвет текста',
+      name: 'changeTextColor',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Изменить цвет заднего фона`
+  String get changeBgColor {
+    return Intl.message(
+      'Изменить цвет заднего фона',
+      name: 'changeBgColor',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

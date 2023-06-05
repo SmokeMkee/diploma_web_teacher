@@ -27,7 +27,7 @@ class AppFilterButton extends StatelessWidget {
         ),
       ),
       onPressed: () async {
-        await context.read<ILocaleRepo>().apply('kk');
+
       },
       label: Text(
         S.of(context).filter,

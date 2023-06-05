@@ -1,10 +1,13 @@
 import 'package:diploma_web_teacher/src/features/theme_manager/src/main_theme.dart';
 import 'package:flutter/material.dart';
 
-class HighSaturationTheme extends MainTheme{
+import '../inclusive_technologies.dart';
+
+class HighSaturationTheme extends MainTheme {
   @override
   final colors = MainThemeColors(
-    error: const Color(0xFFED1200),//
+    error: const Color(0xFFED1200),
+    //
     accent: const Color(0xFF0074E0),
     white: const Color(0xFFFFFFFF),
     gray200: const Color(0xFFC7CEEF),
@@ -25,61 +28,82 @@ class HighSaturationTheme extends MainTheme{
 
   @override
   final textStyles = MainThemeTextStyles(
-    s14w400: const TextStyle(
-      fontSize: 14,
+    s14w400: TextStyle(
+      fontSize: 14 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w400,
-      color: Color(0xFFFFFFFF),
+      color: const Color(0xFFFFFFFF),
+      height:1* InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s11w400: const TextStyle(
-      fontSize: 11,
+    s11w400: TextStyle(
+      fontSize: 11 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w400,
+      height:1* InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s20w600: const TextStyle(
-        fontSize: 20,
+    s20w600: TextStyle(
+        fontSize: 20 * InclusiveTechnologies.textScale,
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w600,
-        color: Color(0xFFFFFFFF)
+        color: const Color(0xFFFFFFFF),
+      height:1* InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
+
     ),
-    s18w500: const TextStyle(
-      fontSize: 18,
+    s18w500: TextStyle(
+      fontSize: 18 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w500,
-      color: Color(0xFF000000),
+      color: const Color(0xFF000000),
+      height:1* InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s15w500: const TextStyle(
-      fontSize: 15,
+    s15w500: TextStyle(
+      fontSize: 15 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w500,
-      color: Color(0xFF8C8CBA),
+      color: const Color(0xFF8C8CBA),
+      height:1* InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s14w500: const TextStyle(
-      fontSize: 14,
+    s14w500: TextStyle(
+      fontSize: 14 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w500,
+      height:1* InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s15w400: const TextStyle(
-      fontSize: 15,
+    s15w400: TextStyle(
+      fontSize: 15 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w400,
-      color: Color(0xFFAEAEBB),
+      color: const Color(0xFFAEAEBB),
+      height:1* InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s15w600: const TextStyle(
-      fontSize: 15,
+    s15w600: TextStyle(
+      fontSize: 15 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w600,
+      height:1* InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s17w500: const TextStyle(
-      fontSize: 17,
+    s17w500: TextStyle(
+      fontSize: 17 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
-      color: Color(0xFF000000),
+      color: const Color(0xFF000000),
       fontWeight: FontWeight.w500,
+      height:1* InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s30w700: const TextStyle(
-      fontSize: 30,
+    s30w700: TextStyle(
+      fontSize: 30 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w700,
+      height:1* InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
   );
 }

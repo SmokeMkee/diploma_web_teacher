@@ -19,10 +19,10 @@ class SettingsScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: Scaffold(
-        appBar: const PreferredSize(
-          preferredSize: Size(double.infinity, 200),
+        appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 200),
           child: HeaderWidget(
-            title: 'settings',
+            title: S.of(context).settings,
           ),
         ),
         backgroundColor: theme.colors.background,
@@ -31,7 +31,6 @@ class SettingsScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: const [
               AdditionalSettings(),
-
             ],
           ),
         ),

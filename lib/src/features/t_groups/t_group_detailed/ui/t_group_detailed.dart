@@ -66,8 +66,9 @@ class _TGroupDetailedState extends State<TGroupDetailed> {
                       },
                     ),
                     const SizedBox(width: 34),
+
                     CourseContainer(
-                      text: widget.group.groupName[0],
+                      text: widget.group.groupName.length > 2 || widget.group.groupName.isNotEmpty ? widget.group.groupName[0] : '' ,
                     ),
                     const SizedBox(width: 25),
                     Text(widget.group.groupName,

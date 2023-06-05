@@ -258,21 +258,6 @@ class _ProfileBodyWidgetState extends State<ProfileBodyWidget> {
                 ),
               ),
             ),
-            const SizedBox(width: 24),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: theme.colors.white,
-                shape: RoundedRectangleBorder(
-                  side:  BorderSide(color: theme.colors.gray200, width: 1),
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              onPressed: () {},
-              child:  Padding(
-                padding: const EdgeInsets.symmetric(vertical: 14),
-                child: Text(S.of(context).delete, style: theme.textStyles.s15w500),
-              ),
-            ),
           ],
         ),
         const SizedBox(height: 40),

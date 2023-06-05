@@ -41,11 +41,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Отмена"),
         "category": MessageLookupByLibrary.simpleMessage("Категория"),
         "change": MessageLookupByLibrary.simpleMessage("Изменить"),
+        "changeBgColor":
+            MessageLookupByLibrary.simpleMessage("Изменить цвет заднего фона"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Изменить пароль"),
+        "changeTextColor":
+            MessageLookupByLibrary.simpleMessage("Изменить цвет текста"),
         "checked": MessageLookupByLibrary.simpleMessage("Проверено"),
         "city": MessageLookupByLibrary.simpleMessage("Город"),
         "color": MessageLookupByLibrary.simpleMessage("Цвет"),
+        "colorBlindness": MessageLookupByLibrary.simpleMessage("Дальтонизм"),
         "country": MessageLookupByLibrary.simpleMessage("Страна"),
         "course": MessageLookupByLibrary.simpleMessage("Курс"),
         "courses": MessageLookupByLibrary.simpleMessage("Курсы"),
@@ -100,6 +105,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Инклюзивные технологии"),
         "language": MessageLookupByLibrary.simpleMessage("Язык"),
         "lecture": MessageLookupByLibrary.simpleMessage("Лекция"),
+        "lineSpace": MessageLookupByLibrary.simpleMessage("Пробел линии"),
         "listOfStudents":
             MessageLookupByLibrary.simpleMessage("Список студентов"),
         "logIn": MessageLookupByLibrary.simpleMessage("Авторизоваться"),
@@ -158,6 +164,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "teacher": MessageLookupByLibrary.simpleMessage("Учитель"),
         "teacherAlanAlexander":
             MessageLookupByLibrary.simpleMessage("Учитель: Алан Александр"),
+        "textHeight": MessageLookupByLibrary.simpleMessage("высота текста"),
+        "textSize": MessageLookupByLibrary.simpleMessage("размер текста"),
         "theme": MessageLookupByLibrary.simpleMessage("Тема"),
         "thursday": MessageLookupByLibrary.simpleMessage("Четверг"),
         "timur": MessageLookupByLibrary.simpleMessage("Тимур"),

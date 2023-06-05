@@ -32,7 +32,7 @@ class CoursesDetailedBloc
         ),
       );
     } catch (e) {
-      //emit(CoursesError(message: 'something error'));
+      emit(CoursesDetailedError(message: 'something error'));
     }
   }
 

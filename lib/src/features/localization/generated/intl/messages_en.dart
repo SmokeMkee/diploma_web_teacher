@@ -40,11 +40,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "category": MessageLookupByLibrary.simpleMessage("Category"),
         "change": MessageLookupByLibrary.simpleMessage("Change"),
+        "changeBgColor":
+            MessageLookupByLibrary.simpleMessage("Change background color"),
         "changePassword":
             MessageLookupByLibrary.simpleMessage("Change password"),
+        "changeTextColor":
+            MessageLookupByLibrary.simpleMessage("Change color text"),
         "checked": MessageLookupByLibrary.simpleMessage("Checked"),
         "city": MessageLookupByLibrary.simpleMessage("City"),
         "color": MessageLookupByLibrary.simpleMessage("Color"),
+        "colorBlindness":
+            MessageLookupByLibrary.simpleMessage("Сolor blindness"),
         "country": MessageLookupByLibrary.simpleMessage("Country"),
         "course": MessageLookupByLibrary.simpleMessage("Course"),
         "courses": MessageLookupByLibrary.simpleMessage("Courses"),
@@ -98,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Inclusive Technology"),
         "language": MessageLookupByLibrary.simpleMessage("Language"),
         "lecture": MessageLookupByLibrary.simpleMessage("Lecture"),
+        "lineSpace": MessageLookupByLibrary.simpleMessage("line space"),
         "listOfStudents":
             MessageLookupByLibrary.simpleMessage("List of students"),
         "logIn": MessageLookupByLibrary.simpleMessage("Login"),
@@ -156,6 +163,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "teacher": MessageLookupByLibrary.simpleMessage("Teacher"),
         "teacherAlanAlexander":
             MessageLookupByLibrary.simpleMessage("Teacher: Alan Alexander"),
+        "textHeight": MessageLookupByLibrary.simpleMessage("text height"),
+        "textSize": MessageLookupByLibrary.simpleMessage("text size"),
         "theme": MessageLookupByLibrary.simpleMessage("Theme"),
         "thursday": MessageLookupByLibrary.simpleMessage("Thursday"),
         "timur": MessageLookupByLibrary.simpleMessage("Timur"),

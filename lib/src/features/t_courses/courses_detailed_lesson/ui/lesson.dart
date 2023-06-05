@@ -14,17 +14,25 @@ import '../../../navigation/app_router/app_router.dart';
 import '../../../theme_manager/theme_manager.dart';
 
 class CoursesDetailedLesson extends StatelessWidget {
-  const CoursesDetailedLesson({Key? key}) : super(key: key);
+  const CoursesDetailedLesson(
+      {Key? key,
+      required this.courseName,
+      required this.unitName,
+      required this.unitId})
+      : super(key: key);
+  final String courseName;
+  final String unitName;
+  final int unitId;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
       child: Scaffold(
-        appBar: const PreferredSize(
-          preferredSize: Size(double.infinity, 200),
+        appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 200),
           child: HeaderWidget(
-            title: 'courses > general english  > week 1',
+            title: 'courses > $courseName > $unitName'.toUpperCase(),
           ),
         ),
         backgroundColor: Colors.transparent,
@@ -33,10 +41,12 @@ class CoursesDetailedLesson extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
-            children: const [
-              CoursesMainContent(),
-              SizedBox(width: 75),
-              CoursesLeftSideBar(),
+            children: [
+              CoursesMainContent(
+                unitName: unitName,
+              ),
+              const SizedBox(width: 75),
+              const CoursesLeftSideBar(),
             ],
           ),
         ),
@@ -46,7 +56,9 @@ class CoursesDetailedLesson extends StatelessWidget {
 }
 
 class CoursesMainContent extends StatelessWidget {
-  const CoursesMainContent({Key? key}) : super(key: key);
+  const CoursesMainContent({Key? key, required this.unitName})
+      : super(key: key);
+  final String unitName;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +76,7 @@ class CoursesMainContent extends StatelessWidget {
                   },
                 ),
                 const SizedBox(width: 11),
-                const Text('PRESENT PERF |'),
+                Text(unitName),
               ],
             ),
             const SizedBox(height: 17),
@@ -85,8 +97,125 @@ class CoursesMainContent extends StatelessWidget {
               },
               child: CreateNewMaterial(theme: theme),
             ),
+            const SizedBox(height: 30),
+            // const LectureInfoContainer(),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class LectureInfoContainer extends StatefulWidget {
+  const LectureInfoContainer({Key? key}) : super(key: key);
+
+  @override
+  State<LectureInfoContainer> createState() => _LectureInfoContainerState();
+}
+
+class _LectureInfoContainerState extends State<LectureInfoContainer> {
+  PageController pageController = PageController();
+
+  int getCurrentIndex() {
+    return pageController.page!.round();
+  }
+
+  int currentPage = 1;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 500,
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: AppColors.gray200,
+          width: 2,
+        ),
+        borderRadius: BorderRadius.circular(10),
+        color: AppColors.gray200.withOpacity(0.1),
+      ),
+      child: Column(
+        children: [
+          LessonPageBuilder(
+            controller: pageController,
+            imagePath: [
+              ...List.generate(
+                10,
+                (index) =>
+                    'https://www.gannett-cdn.com/presto/2021/03/22/NRCD/9d9dd9e4-e84a'
+                    '-402e-ba8f-daa659e6e6c5-PhotoWord_003'
+                    '.JPG?width=1320&height=850&fit=crop&format=pjpg&auto=webp',
+              ),
+            ],
+            valueChanged: (int value) {
+              setState(() {
+                currentPage = value + 1;
+              });
+            },
+          ),
+          const SizedBox(height: 25),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  pageController.previousPage(
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.easeIn);
+                },
+                child: SvgPicture.asset(AppAssets.svg.arrowLeft2),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 31),
+                child: Text('$currentPage out of 10'),
+              ),
+              GestureDetector(
+                onTap: () {
+                  pageController.nextPage(
+                      duration: const Duration(milliseconds: 400),
+                      curve: Curves.easeIn);
+                },
+                child: SvgPicture.asset(AppAssets.svg.arrowRight2),
+              ),
+            ],
+          ),
+          const SizedBox(height: 15),
+        ],
+      ),
+    );
+  }
+}
+
+class LessonPageBuilder extends StatelessWidget {
+  const LessonPageBuilder(
+      {Key? key,
+      required this.controller,
+      required this.imagePath,
+      required this.valueChanged})
+      : super(key: key);
+  final PageController controller;
+  final List<String> imagePath;
+  final ValueChanged<int> valueChanged;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: PageView.builder(
+        onPageChanged: valueChanged,
+        controller: controller,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, int index) {
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.network(
+              imagePath[index],
+              height: 500,
+              fit: BoxFit.fitWidth,
+            ),
+          );
+        },
+        itemCount: imagePath.length,
       ),
     );
   }
@@ -212,8 +341,8 @@ class CreateNewMaterial extends StatelessWidget {
 }
 
 class CoursesLeftSideBar extends StatelessWidget {
-  const CoursesLeftSideBar({Key? key}) : super(key: key);
-
+  const CoursesLeftSideBar({Key? key, required this.sectionName}) : super(key: key);
+  final String sectionName;
   @override
   Widget build(BuildContext context) {
     return Expanded(

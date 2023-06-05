@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html';
 
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:dio/dio.dart';
@@ -35,7 +36,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       if(response.userType == 'student'){
         emit(AuthError(message: 'неверный пароль или email'));
       }else{
-        storage.write(key: 'token', value: response.token);
+        window.localStorage['token'] =  response.token!;
         emit(AuthSuccessLogIn());
       }
     } catch (e) {

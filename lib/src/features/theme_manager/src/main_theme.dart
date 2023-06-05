@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
 
-enum ThemeType { light, invert, darkContrast, highSaturation, lowSaturation }
+enum ThemeType {
+  light,
+  invert,
+  darkContrast,
+  highSaturation,
+  lowSaturation,
+  pratonopia,
+  deuteranopia,
+  tritanopia,
+  achromatopsia,
+  protanomaly,
+  deuteranomaly,
+  tritanomaly,
+  achromatomaly,
+}
 
 abstract class MainTheme {
   MainThemeColors get colors;

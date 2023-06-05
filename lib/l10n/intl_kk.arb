@@ -116,5 +116,14 @@
   "inclusiveTechnology" : "Инклюзивті технологиялар",
   "versionForPeopleWithDisabilities" : "Мүмкіндігі шектеулі адамдарға арналған нұсқа",
   "selectSystemFeaturesForPeopleWithDisabilities" : "Мүмкіндігі шектеулі адамдарға арналған жүйе мүмкіндіктерін таңдаңыз",
-  "selectTheTypesOfNotificationsYouWillReceive" : "Сізге келетін хабарландырулардың түрлерін таңдаңыз"
+  "selectTheTypesOfNotificationsYouWillReceive" : "Сізге келетін хабарландырулардың түрлерін таңдаңыз",
+  "colorBlindness" : "Түс соқырлығы",
+  "textSize" : "мәтін өлшемі",
+  "textHeight" : "мәтін биіктігі",
+  "lineSpace" : "сызық кеңістігі",
+  "changeTextColor" : "Мәтін түсін өзгерту",
+  "changeBgColor" : "Фон түсін өзгерту"
+
+
+
 }

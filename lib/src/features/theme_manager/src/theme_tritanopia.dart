@@ -3,27 +3,26 @@ import 'package:flutter/material.dart';
 
 import '../inclusive_technologies.dart';
 
-class DarkContrastTheme extends MainTheme {
+class TritanopiaTheme extends MainTheme{
   @override
   final colors = MainThemeColors(
-    error: const Color(0xFFFFFFFF),
-    //
-    accent: const Color(0xFF4D9FEB),
-    white: const Color(0xFF000000),
-    gray200: const Color(0xFFFFFFFF),
-    gray600: const Color(0xFF4D9FEB),
-    background: const Color(0xFF000000),
-    type: const Color(0xFFFFFFFF),
-    success: const Color(0xFF49B66E),
-    gray400: const Color(0xFFFFFFFF),
-    attended: const Color(0xFFD7EEDF),
-    audioLine: const Color(0xFFFFFFFF),
-    gray900: const Color(0xFFFFFFFF),
-    notAttended: const Color(0xFFF9C8BD),
-    primary: const Color(0xFFFFFFFF),
-    statusGrade: const Color(0xFFECBC5F),
-    subtitle: const Color(0xFF4D9FEB),
-    subtitleBg: const Color(0xFFC3DDF5),
+    error: const Color(0xFFe54849),
+    accent: const Color(0xFF4dc0bd),
+    white: const Color(0xFFfffeff),
+    gray200: const Color(0xFFD8D8D8),
+    gray400: const Color(0xFFB2B7B6),
+    gray600: const Color(0xFF8b9292),
+    gray900: const Color(0xFF51c5b),
+    background: const Color(0xFFF8FaFa),
+    type: const Color(0xFFE5E5E8),
+    success: const Color(0xFF4e8d90),
+    attended: const Color(0xFFd8e5e6),
+    audioLine: const Color(0xFFf0f3f3),
+    notAttended: const Color(0xFFf6c1c2),
+    primary: const Color(0xFF111212),
+    statusGrade: const Color(0xFFe9878b),
+    subtitle: const Color(0xFF538b8a),
+    subtitleBg: const Color(0xFFc4eae9),
   );
 
   @override
@@ -32,22 +31,20 @@ class DarkContrastTheme extends MainTheme {
       fontSize: 14 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w400,
-      color: const Color(0xFFFFFFFF),
-      height: 1 * InclusiveTechnologies.lineHeight,
+      height:1* InclusiveTechnologies.lineHeight,
       letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
     s11w400: TextStyle(
       fontSize: 11 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w400,
-      height: 1 * InclusiveTechnologies.lineHeight,
+      height:1* InclusiveTechnologies.lineHeight,
       letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
     s20w600: TextStyle(
       fontSize: 20 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w600,
-      color: const Color(0xFFFFFFFF),
       height:1* InclusiveTechnologies.lineHeight,
       letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
@@ -55,7 +52,6 @@ class DarkContrastTheme extends MainTheme {
       fontSize: 18 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w500,
-      color: const Color(0xFF4D9FEB),
       height:1* InclusiveTechnologies.lineHeight,
       letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
@@ -63,7 +59,6 @@ class DarkContrastTheme extends MainTheme {
       fontSize: 15 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w500,
-      color: const Color(0xFFFFFFFF),
       height:1* InclusiveTechnologies.lineHeight,
       letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
@@ -78,7 +73,6 @@ class DarkContrastTheme extends MainTheme {
       fontSize: 15 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
       fontWeight: FontWeight.w400,
-      color: const Color(0xFFFFFFFF),
       height:1* InclusiveTechnologies.lineHeight,
       letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
@@ -92,7 +86,6 @@ class DarkContrastTheme extends MainTheme {
     s17w500: TextStyle(
       fontSize: 17 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
-      color: const Color(0xFFFFFFFF),
       fontWeight: FontWeight.w500,
       height:1* InclusiveTechnologies.lineHeight,
       letterSpacing: 1 * InclusiveTechnologies.lineSpacing,

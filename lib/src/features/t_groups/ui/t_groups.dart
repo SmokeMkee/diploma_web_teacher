@@ -16,6 +16,7 @@ import '../data/bloc/group_bloc.dart';
 
 class TGroups extends StatelessWidget {
   const TGroups({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var theme = context.watch<ThemeManager>().theme;
@@ -80,7 +81,7 @@ class TGroups extends StatelessWidget {
                     return Expanded(
                       child: ListView.builder(
                         itemBuilder: (context, int index) {
-                          print(state.listCourse[index].id);
+                          print(state.listCourse.length);
                           return GestureDetector(
                             onTap: () => context.router.push(
                               TGroupDetailedRoute(
@@ -125,6 +126,7 @@ class AppElevatedIconButton extends StatelessWidget {
 
     return ElevatedButton.icon(
       style: ElevatedButton.styleFrom(
+        backgroundColor: theme.colors.accent,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
         ),
@@ -172,7 +174,9 @@ class TGroupCard extends StatelessWidget {
               Row(
                 children: [
                   CourseContainer(
-                    text: nameGroup[0] + nameGroup[1].toUpperCase(),
+                    text: nameGroup.length > 2 || nameGroup.isNotEmpty
+                        ? nameGroup[0] + nameGroup[1].toUpperCase()
+                        : '',
                   ),
                   const SizedBox(width: 18),
                   Text(

@@ -7,11 +7,13 @@ import '../app_router/app_router.dart';
 import '../navigation.dart';
 
 class PrimaryScreen extends StatelessWidget {
-  const PrimaryScreen({super.key,  this.name});
+  const PrimaryScreen({super.key, this.name});
+
   final String? name;
+
   @override
   Widget build(BuildContext context) {
-    var theme  = context.watch<ThemeManager>().theme;
+    var theme = context.watch<ThemeManager>().theme;
     return WillPopScope(
       onWillPop: () async {
         return false;
@@ -26,7 +28,11 @@ class PrimaryScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 19),
-                child: Container(height: double.infinity, width: 5,color: theme.colors.gray200,),
+                child: Container(
+                  height: double.infinity,
+                  width: 5,
+                  color: theme.colors.gray200,
+                ),
               ),
               Expanded(child: child)
             ],
@@ -38,24 +44,17 @@ class PrimaryScreen extends StatelessWidget {
             TCoursesRouter(
               children: [TCoursesRoute()],
             ),
-            TGroupsRouter(
-                children: [
-                  TGroupsRoute()
-                ]
-            ),
-            TGradeBookRouter(
-                children: [
-                  TGradeBookRoute()
-                ]
-            ),
-            TScheduleRouter(
-              children: [TScheduleRoute()],
-            ),
+            TGroupsRouter(children: [TGroupsRoute()]),
+            TGradeBookRouter(children: [TGradeBookRoute()]),
+            // TScheduleRouter(
+            //   children: [TScheduleRoute()],
+            // ),
             SettingsRouter(
               children: [SettingsScreenRoute()],
             ),
           ],
-          floatingActionButtonLocation: FloatingActionButtonLocation.startDocked,
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.startDocked,
           floatingActionButtonBuilder: (context, tabsRouter) {
             return Navigation(
               current: tabsRouter.activeIndex,

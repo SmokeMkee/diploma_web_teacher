@@ -9,10 +9,14 @@ class LightTheme extends MainTheme {
   final colors = MainThemeColors(
     error: const Color(0xFFED5B3A),
     accent: const Color(0xFF4A98E0),
-    white: const Color(0xFFFFFFFF),
+    white: InclusiveTechnologies.bgColor.isNotEmpty
+        ? Color(int.parse(InclusiveTechnologies.bgColor))
+        :const Color(0xFFFFFFFF),
     gray200: const Color(0xFFD8D9DD),
     gray600: const Color(0xFF8B8C98),
-    background: const Color(0xFFF8F9FC),
+    background: InclusiveTechnologies.bgColor.isNotEmpty
+        ? Color(int.parse(InclusiveTechnologies.bgColor))
+        : const Color(0xFFF8F9FC),
     type: const Color(0xFFE6E5EC),
     success: const Color(0xFF49B66E),
     gray400: const Color(0xFFB2B2BB),
@@ -28,55 +32,125 @@ class LightTheme extends MainTheme {
 
   @override
   final textStyles = MainThemeTextStyles(
-    s14w400:  TextStyle(
-      fontSize: 14* InclusiveTechnologies.textScale,
+    s14w400: TextStyle(
+      fontSize: 14 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
+      color: InclusiveTechnologies.textColor.isNotEmpty
+          ? Color(
+              int.parse(InclusiveTechnologies.textColor),
+            )
+          : null,
       fontWeight: FontWeight.w400,
+      height: 1 * InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s11w400:  TextStyle(
-      fontSize: 11* InclusiveTechnologies.textScale,
+    s11w400: TextStyle(
+      fontSize: 11 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
+      color: InclusiveTechnologies.textColor.isNotEmpty
+          ? Color(
+              int.parse(InclusiveTechnologies.textColor),
+            )
+          : null,
       fontWeight: FontWeight.w400,
+      height: 1 * InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s20w600: const TextStyle(
-      fontSize: 20,
+    s20w600: TextStyle(
+      fontSize: 20 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
+      color: InclusiveTechnologies.textColor.isNotEmpty
+          ? Color(
+              int.parse(InclusiveTechnologies.textColor),
+            )
+          : null,
       fontWeight: FontWeight.w600,
+      height: 1 * InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s18w500: const TextStyle(
-      fontSize: 18,
+    s18w500: TextStyle(
+      fontSize: 18 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
+      color: InclusiveTechnologies.textColor.isNotEmpty
+          ? Color(
+              int.parse(InclusiveTechnologies.textColor),
+            )
+          : null,
       fontWeight: FontWeight.w500,
+      height: 1 * InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s15w500:  TextStyle(
+    s15w500: TextStyle(
       fontSize: 15 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
+      color: InclusiveTechnologies.textColor.isNotEmpty
+          ? Color(
+              int.parse(InclusiveTechnologies.textColor),
+            )
+          : null,
       fontWeight: FontWeight.w500,
+      height: 1 * InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s14w500: const TextStyle(
-      fontSize: 14,
+    s14w500: TextStyle(
+      fontSize: 14 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
+      color: InclusiveTechnologies.textColor.isNotEmpty
+          ? Color(
+              int.parse(InclusiveTechnologies.textColor),
+            )
+          : null,
       fontWeight: FontWeight.w500,
+      height: 1 * InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s15w400: const TextStyle(
-      fontSize: 15,
+    s15w400: TextStyle(
+      fontSize: 15 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
+      color: InclusiveTechnologies.textColor.isNotEmpty
+          ? Color(
+              int.parse(InclusiveTechnologies.textColor),
+            )
+          : null,
       fontWeight: FontWeight.w400,
+      height: 1 * InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s15w600: const TextStyle(
-      fontSize: 15,
+    s15w600: TextStyle(
+      fontSize: 15 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
+      color: InclusiveTechnologies.textColor.isNotEmpty
+          ? Color(
+              int.parse(InclusiveTechnologies.textColor),
+            )
+          : null,
       fontWeight: FontWeight.w600,
+      height: 1 * InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s17w500: const TextStyle(
-      fontSize: 17,
+    s17w500: TextStyle(
+      fontSize: 17 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
+      color: InclusiveTechnologies.textColor.isNotEmpty
+          ? Color(
+              int.parse(InclusiveTechnologies.textColor),
+            )
+          : null,
       fontWeight: FontWeight.w500,
+      height: 1 * InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
-    s30w700: const TextStyle(
-      fontSize: 30,
+    s30w700: TextStyle(
+      fontSize: 30 * InclusiveTechnologies.textScale,
       fontFamily: 'Poppins',
+      color: InclusiveTechnologies.textColor.isNotEmpty
+          ? Color(
+              int.parse(InclusiveTechnologies.textColor),
+            )
+          : null,
       fontWeight: FontWeight.w700,
+      height: 1 * InclusiveTechnologies.lineHeight,
+      letterSpacing: 1 * InclusiveTechnologies.lineSpacing,
     ),
   );
 }

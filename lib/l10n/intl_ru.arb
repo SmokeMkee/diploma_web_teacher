@@ -117,5 +117,11 @@
   "inclusiveTechnology" : "Инклюзивные технологии",
   "versionForPeopleWithDisabilities" : "Версия для людей с ограниченными возможностями",
   "selectSystemFeaturesForPeopleWithDisabilities" : "Выберите функции системы для людей с ограниченными возможностями",
-  "selectTheTypesOfNotificationsYouWillReceive" : "Выберите типы уведомлений, которые вы будете получать"
+  "selectTheTypesOfNotificationsYouWillReceive" : "Выберите типы уведомлений, которые вы будете получать",
+  "colorBlindness" : "Дальтонизм",
+  "textSize" : "размер текста",
+  "textHeight" : "высота текста",
+  "lineSpace" : "Пробел линии",
+  "changeTextColor" : "Изменить цвет текста",
+  "changeBgColor" : "Изменить цвет заднего фона"
 }

@@ -18,13 +18,16 @@ class CourseContainer extends StatelessWidget {
       height: 40,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5),
-        color: const Color(0xff6B75C7),
+        color: theme.colors.accent,
       ),
       child: Center(
-        child: Text(
-          text,
-          style: theme.textStyles.s18w500.copyWith(color: theme.colors.white),
-        ),
+        child: text.isNotEmpty
+            ? Text(
+                text,
+                style: theme.textStyles.s18w500
+                    .copyWith(color: theme.colors.white),
+              )
+            : SizedBox.shrink(),
       ),
     );
   }

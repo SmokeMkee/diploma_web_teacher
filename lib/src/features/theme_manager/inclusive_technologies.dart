@@ -4,7 +4,9 @@ class InclusiveTechnologies   {
 
   static double textScale = 1;
 
-  static double _lineHeight = 1;
-  static double _lineSpacing = 1;
+  static double lineHeight = 1;
+  static double lineSpacing = 0;
+  static String textColor ='';
+  static String bgColor ='';
 
 }

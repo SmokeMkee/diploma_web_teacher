@@ -21,51 +21,48 @@ class TGradeBookDetailed extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
-      child: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: const Size(double.infinity, 200),
-            child: HeaderWidget(
-              title: S.of(context).gradeBook,
-              withDisabilities: false,
-            ),
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 200),
+          child: HeaderWidget(
+            title: S.of(context).gradeBook,
+            withDisabilities: false,
           ),
-          backgroundColor: theme.colors.background,
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children:  [
-                  AppBackButton(
-                    onTap: () {
-                      context.router.popAndPush(const TGradeBookRouter());
-                    },
-                  ),
-                  const SizedBox(width: 34),
-                  const CourseContainer(text: 'GE',),
-                  const SizedBox(width: 24),
-                  Text(
-                    S.of(context).generalEnglish,
-                    style: theme.textStyles.s18w500,
-                  )
-                ],
-              ),
-              const SizedBox(height: 36),
-              const SearchWidget(),
-              Expanded(
-                child: ListView.builder(
-                  itemBuilder: (context, int index) {
-                    return GestureDetector(
-                      onTap: () => context.router.push(const TGradeBookDetailedGroupRoute()),
-                      child: const TGradeBookDetailedCard(),
-                    );
+        ),
+        backgroundColor: theme.colors.background,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children:  [
+                AppBackButton(
+                  onTap: () {
+                    context.router.popAndPush(const TGradeBookRouter());
                   },
-                  itemCount: 4,
                 ),
+                const SizedBox(width: 34),
+                const CourseContainer(text: 'GE',),
+                const SizedBox(width: 24),
+                Text(
+                  S.of(context).generalEnglish,
+                  style: theme.textStyles.s18w500,
+                )
+              ],
+            ),
+            const SizedBox(height: 36),
+            const SearchWidget(),
+            Expanded(
+              child: ListView.builder(
+                itemBuilder: (context, int index) {
+                  return GestureDetector(
+                    onTap: () => context.router.push(const TGradeBookDetailedGroupRoute()),
+                    child: const TGradeBookDetailedCard(),
+                  );
+                },
+                itemCount: 4,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

@@ -91,7 +91,8 @@ class _$AppRouter extends RootStackRouter {
         routeData: routeData,
         child: TCoursesDetailed(
           key: args.key,
-          groupId: args.groupId,
+          courseId: args.groupId,
+          courseName: args.courseName,
         ),
       );
     },
@@ -106,9 +107,15 @@ class _$AppRouter extends RootStackRouter {
       );
     },
     CoursesDetailedLessonRoute.name: (routeData) {
+      final args = routeData.argsAs<CoursesDetailedLessonRouteArgs>();
       return AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const CoursesDetailedLesson(),
+        child: CoursesDetailedLesson(
+          key: args.key,
+          courseName: args.courseName,
+          unitName: args.unitName,
+          unitId: args.unitId,
+        ),
       );
     },
     TGroupsRoute.name: (routeData) {
@@ -422,12 +429,14 @@ class TCoursesDetailedRoute extends PageRouteInfo<TCoursesDetailedRouteArgs> {
   TCoursesDetailedRoute({
     Key? key,
     required int groupId,
+    required String courseName,
   }) : super(
           TCoursesDetailedRoute.name,
           path: 't-courses-detailed',
           args: TCoursesDetailedRouteArgs(
             key: key,
             groupId: groupId,
+            courseName: courseName,
           ),
         );
 
@@ -438,15 +447,18 @@ class TCoursesDetailedRouteArgs {
   const TCoursesDetailedRouteArgs({
     this.key,
     required this.groupId,
+    required this.courseName,
   });
 
   final Key? key;
 
   final int groupId;
 
+  final String courseName;
+
   @override
   String toString() {
-    return 'TCoursesDetailedRouteArgs{key: $key, groupId: $groupId}';
+    return 'TCoursesDetailedRouteArgs{key: $key, groupId: $groupId, courseName: $courseName}';
   }
 }
 
@@ -486,14 +498,47 @@ class TGroupDetailedRouteArgs {
 
 /// generated route for
 /// [CoursesDetailedLesson]
-class CoursesDetailedLessonRoute extends PageRouteInfo<void> {
-  const CoursesDetailedLessonRoute()
-      : super(
+class CoursesDetailedLessonRoute
+    extends PageRouteInfo<CoursesDetailedLessonRouteArgs> {
+  CoursesDetailedLessonRoute({
+    Key? key,
+    required String courseName,
+    required String unitName,
+    required int unitId,
+  }) : super(
           CoursesDetailedLessonRoute.name,
           path: 'courses-detailed-lesson',
+          args: CoursesDetailedLessonRouteArgs(
+            key: key,
+            courseName: courseName,
+            unitName: unitName,
+            unitId: unitId,
+          ),
         );
 
   static const String name = 'CoursesDetailedLessonRoute';
+}
+
+class CoursesDetailedLessonRouteArgs {
+  const CoursesDetailedLessonRouteArgs({
+    this.key,
+    required this.courseName,
+    required this.unitName,
+    required this.unitId,
+  });
+
+  final Key? key;
+
+  final String courseName;
+
+  final String unitName;
+
+  final int unitId;
+
+  @override
+  String toString() {
+    return 'CoursesDetailedLessonRouteArgs{key: $key, courseName: $courseName, unitName: $unitName, unitId: $unitId}';
+  }
 }
 
 /// generated route for

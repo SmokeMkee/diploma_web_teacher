@@ -3,11 +3,6 @@ import 'package:diploma_web_teacher/src/features/t_courses/t_courses_detailed/ui
 import 'package:diploma_web_teacher/src/features/t_groups/data/dto/course_dto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-
-import '../../../../../../constants/app_assets.dart';
-import '../../../../../../constants/app_colors.dart';
-import '../../../../../../constants/app_styles.dart';
 import '../../../../widgets/app_back_button.dart';
 import '../../../../widgets/course_container.dart';
 import '../../../../widgets/header_widget.dart';
@@ -17,8 +12,11 @@ import '../../../theme_manager/theme_manager.dart';
 import '../data/bloc/courses_detailed_bloc.dart';
 
 class TCoursesDetailed extends StatelessWidget {
-  const TCoursesDetailed({Key? key, required this.groupId}) : super(key: key);
-  final int groupId;
+  const TCoursesDetailed(
+      {Key? key, required this.courseId, required this.courseName})
+      : super(key: key);
+  final int courseId;
+  final String courseName;
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +49,8 @@ class TCoursesDetailed extends StatelessWidget {
                         },
                       ),
                       const SizedBox(width: 34),
-                      const CourseContainer(
-                        text: 'GE',
+                      CourseContainer(
+                        text: courseName[0].toUpperCase(),
                       ),
                       const SizedBox(width: 25),
                       Column(
@@ -60,40 +58,10 @@ class TCoursesDetailed extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            S.of(context).generalEnglish,
+                            courseName,
                             style: theme.textStyles.s15w500,
                           ),
-                          Text(
-                            S.of(context).teacherAlanAlexander,
-                            style: theme.textStyles.s14w400.copyWith(
-                              color: theme.colors.gray600,
-                            ),
-                          ),
                         ],
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      ElevatedButton.icon(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                        ),
-                        onPressed: () {},
-                        label: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 14),
-                          child: Text(
-                            S.of(context).addStudents,
-                            style: theme.textStyles.s15w500
-                                .copyWith(color: theme.colors.white),
-                          ),
-                        ),
-                        icon: SvgPicture.asset(
-                          AppAssets.svg.add,
-                          color: theme.colors.white,
-                        ),
                       ),
                     ],
                   ),
@@ -117,9 +85,12 @@ class TCoursesDetailed extends StatelessWidget {
                 child: TabBarView(
                   children: [
                     TCoursesDetailedUnits(
-                      groupId: groupId,
+                      groupId: courseId,
+                      courseName: courseName,
                     ),
-                     TCoursesDetailedListOfStudents(courseId: groupId,),
+                    TCoursesDetailedListOfStudents(
+                      courseId: courseId,
+                    ),
                   ],
                 ),
               )
@@ -132,18 +103,25 @@ class TCoursesDetailed extends StatelessWidget {
 }
 
 class TCoursesDetailedListOfStudents extends StatefulWidget {
-  const TCoursesDetailedListOfStudents({Key? key, required this.courseId}) : super(key: key);
+  const TCoursesDetailedListOfStudents({Key? key, required this.courseId})
+      : super(key: key);
   final int courseId;
+
   @override
-  State<TCoursesDetailedListOfStudents> createState() => _TCoursesDetailedListOfStudentsState();
+  State<TCoursesDetailedListOfStudents> createState() =>
+      _TCoursesDetailedListOfStudentsState();
 }
 
-class _TCoursesDetailedListOfStudentsState extends State<TCoursesDetailedListOfStudents> {
+class _TCoursesDetailedListOfStudentsState
+    extends State<TCoursesDetailedListOfStudents> {
   @override
   void didChangeDependencies() {
-    context.read<CoursesDetailedBloc>().add(FetchGroupsInCourse(courseId: widget.courseId));
+    context
+        .read<CoursesDetailedBloc>()
+        .add(FetchGroupsInCourse(courseId: widget.courseId));
     super.didChangeDependencies();
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<CoursesDetailedBloc, CoursesDetailedState>(
@@ -152,27 +130,29 @@ class _TCoursesDetailedListOfStudentsState extends State<TCoursesDetailedListOfS
           return const Center(child: CircularProgressIndicator());
         }
         if (state is CoursesDetailedGroupsData) {
-          return ListView.builder(
-            itemCount: state.list.length,
-            itemBuilder: (context, int index) {
-              return GestureDetector(
-                onTap: () {
-                  context.router.push(
-                    TGroupDetailedRoute(
-                      group: GroupDTO(
-                        groupName: state.list[index].groupName ?? '',
-                        id: state.list[index].groupId ?? 0,
-                        userId: state.list[index].userId ?? 0,
+          return state.list.isEmpty
+              ? Text('ds')
+              : ListView.builder(
+                  itemCount: state.list.length,
+                  itemBuilder: (context, int index) {
+                    return GestureDetector(
+                      onTap: () {
+                        context.router.push(
+                          TGroupDetailedRoute(
+                            group: GroupDTO(
+                              groupName: state.list[index].groupName ?? '',
+                              id: state.list[index].groupId ?? 0,
+                              userId: state.list[index].userId ?? 0,
+                            ),
+                          ),
+                        );
+                      },
+                      child: TGroupCoursesCard(
+                        nameGroup: state.list[index].groupName ?? '',
                       ),
-                    ),
-                  );
-                },
-                child: TGroupCoursesCard(
-                  nameGroup: state.list[index].groupName ?? '',
-                ),
-              );
-            },
-          );
+                    );
+                  },
+                );
         }
         if (state is CoursesDetailedError) {
           return const Center(

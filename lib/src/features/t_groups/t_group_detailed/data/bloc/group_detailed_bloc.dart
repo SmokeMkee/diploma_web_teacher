@@ -72,7 +72,6 @@ class GroupDetailedBloc extends Bloc<GroupDetailedEvent, GroupDetailedState> {
   ) async {
     try {
       emit(GroupDetailedLoading());
-      print(event.groupId.toString() + 'dsadas');
       final response = await repo.fetch(event.groupId);
       studentList.clear();
       studentList.addAll(response);

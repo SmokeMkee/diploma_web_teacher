@@ -11,8 +11,10 @@ class TCoursesDetailedUnits extends StatefulWidget {
   const TCoursesDetailedUnits({
     Key? key,
     required this.groupId,
+    required this.courseName,
   }) : super(key: key);
   final int groupId;
+  final String courseName;
 
   @override
   State<TCoursesDetailedUnits> createState() => _TCoursesDetailedUnitsState();
@@ -44,11 +46,15 @@ class _TCoursesDetailedUnitsState extends State<TCoursesDetailedUnits> {
                 (index) {
                   return GestureDetector(
                     onTap: () => context.router.push(
-                      const CoursesDetailedLessonRoute(),
+                      CoursesDetailedLessonRoute(
+                        courseName: widget.courseName,
+                        unitName: state.list[index].sectionName ?? '',
+                        unitId: state.list[index].unitId ?? 0,
+                      ),
                     ),
                     child: CoursesDetailedCard(
                       unit: state.list[index],
-                      number: index,
+                      number: index + 1,
                     ),
                   );
                 },

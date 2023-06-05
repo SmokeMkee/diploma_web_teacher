@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -21,8 +23,7 @@ class _BasicInterceptor implements Interceptor {
   @override
   void onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
-    var value = await storage.read(key: 'token');
-
+    var value = window.localStorage['token'];
     options.contentType = 'application/json; charset=utf-8';
     options.responseType = ResponseType.json;
     options.headers = {

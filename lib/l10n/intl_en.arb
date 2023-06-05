@@ -117,5 +117,15 @@
   "inclusiveTechnology" : "Inclusive Technology",
   "versionForPeopleWithDisabilities" : "Version for people with disabilities",
   "selectSystemFeaturesForPeopleWithDisabilities" : "Select system features for people with disabilities",
-  "selectTheTypesOfNotificationsYouWillReceive" : "Select the types of notifications you will receive"
+  "selectTheTypesOfNotificationsYouWillReceive" : "Select the types of notifications you will receive",
+  "colorBlindness" : "Сolor blindness",
+  "textSize" : "text size",
+  "textHeight" : "text height",
+  "lineSpace" : "line space",
+  "changeTextColor" : "Change color text",
+  "changeBgColor" : "Change background color"
+
+
+
+
 }

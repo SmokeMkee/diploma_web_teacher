@@ -21,140 +21,118 @@ class TGradeBookDetailedGroup extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(72, 42, 72, 0),
-      child: DefaultTabController(
-        length: 2,
-        child: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size(double.infinity, 200),
-            child: HeaderWidget(
-              title: S.of(context).gradeBookGeneralEnglish,
-              withDisabilities: false,
-            ),
+      child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size(double.infinity, 200),
+          child: HeaderWidget(
+            title: S.of(context).gradeBookGeneralEnglish,
+            withDisabilities: false,
           ),
-          backgroundColor: theme.colors.background,
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 37),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    children: [
-                      AppBackButton(
-                        onTap: () {
-                          context.router
-                              .pop(context);
-                        },
-                      ),
-                      const SizedBox(width: 34),
-                       const CourseContainer(text: 'IT',),
-                      const SizedBox(width: 25),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                           Text(
-                            S.of(context).generalEnglish,
-                            style: theme.textStyles.s15w500,
-                          ),
-                          Text(
-                            'ITIS-1914',
-                            style: theme.textStyles.s14w400.copyWith(
-                              color: theme.colors.gray600,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                   Text(
-                    S.of(context).attendance8934,
-                    style: theme.textStyles.s15w500,
-                  )
-                ],
-              ),
-
-              const SizedBox(height: 34),
-              TabBar(
-                unselectedLabelColor: theme.colors.gray600,
-                indicatorWeight: 6,
-                indicatorSize: TabBarIndicatorSize.label,
-                indicatorColor: theme.colors.accent,
-                labelColor: theme.colors.accent,
-                labelStyle: theme.textStyles.s15w500.copyWith(color: theme.colors.accent),
-                tabs: [
-                  Tab(
-                    text: S.of(context).grades,
-                  ),
-                  Tab(
-                    text: S.of(context).attendance,
-                  ),
-                ],
-              ),
-              const SizedBox(height: 23),
-              // SizedBox(
-              //   width: MediaQuery.of(context).size.width / 3,
-              //   child: Row(
-              //     children:  [
-              //       Expanded(
-              //         child: AppDropDownButton(
-              //           items: [
-              //             DropdownMenuItem(
-              //               value: 'Week 1',
-              //               child: Text(
-              //                 'Week 1',
-              //                 style: theme.textStyles.s15w500
-              //               ),
-              //             ),
-              //              DropdownMenuItem(
-              //               value: 'Week 2',
-              //               child: Text(
-              //                 'Week 2',
-              //                 style:theme.textStyles.s15w500,
-              //               ),
-              //             ),
-              //           ],
-              //           initial: 'Week 1',
-              //         ),
-              //       ),
-              //       const SizedBox(width: 20),
-              //        Expanded(
-              //         child: AppDropDownButton(
-              //           items: [
-              //             DropdownMenuItem(
-              //               value: 'Classwork',
-              //               child: Text(
-              //                 'Classwork',
-              //                 style: theme.textStyles.s15w500
-              //               ),
-              //             ),
-              //             DropdownMenuItem(
-              //               value: 'Home work',
-              //               child: Text(
-              //                 'Home work',
-              //                 style: theme.textStyles.s15w500
-              //               ),
-              //             ),
-              //           ],
-              //           initial: 'Classwork',
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              const SizedBox(height: 25),
-              const Expanded(
-                child: TabBarView(
+        ),
+        backgroundColor: theme.colors.background,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 37),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
                   children: [
-                    GradesTableWidget()
+                    AppBackButton(
+                      onTap: () {
+                        context.router
+                            .pop(context);
+                      },
+                    ),
+                    const SizedBox(width: 34),
+                     const CourseContainer(text: 'IT',),
+                    const SizedBox(width: 25),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                         Text(
+                          S.of(context).generalEnglish,
+                          style: theme.textStyles.s15w500,
+                        ),
+                        Text(
+                          'ITIS-1914',
+                          style: theme.textStyles.s14w400.copyWith(
+                            color: theme.colors.gray600,
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 35),
-            ],
-          ),
+                 Text(
+                  S.of(context).attendance8934,
+                  style: theme.textStyles.s15w500,
+                )
+              ],
+            ),
+
+            const SizedBox(height: 34),
+            const SizedBox(height: 23),
+            // SizedBox(
+            //   width: MediaQuery.of(context).size.width / 3,
+            //   child: Row(
+            //     children:  [
+            //       Expanded(
+            //         child: AppDropDownButton(
+            //           items: [
+            //             DropdownMenuItem(
+            //               value: 'Week 1',
+            //               child: Text(
+            //                 'Week 1',
+            //                 style: theme.textStyles.s15w500
+            //               ),
+            //             ),
+            //              DropdownMenuItem(
+            //               value: 'Week 2',
+            //               child: Text(
+            //                 'Week 2',
+            //                 style:theme.textStyles.s15w500,
+            //               ),
+            //             ),
+            //           ],
+            //           initial: 'Week 1',
+            //         ),
+            //       ),
+            //       const SizedBox(width: 20),
+            //        Expanded(
+            //         child: AppDropDownButton(
+            //           items: [
+            //             DropdownMenuItem(
+            //               value: 'Classwork',
+            //               child: Text(
+            //                 'Classwork',
+            //                 style: theme.textStyles.s15w500
+            //               ),
+            //             ),
+            //             DropdownMenuItem(
+            //               value: 'Home work',
+            //               child: Text(
+            //                 'Home work',
+            //                 style: theme.textStyles.s15w500
+            //               ),
+            //             ),
+            //           ],
+            //           initial: 'Classwork',
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+            const SizedBox(height: 25),
+            const Expanded(
+              child:                   GradesTableWidget()
+
+            ),
+            const SizedBox(height: 35),
+          ],
         ),
       ),
     );
